@@ -12,8 +12,8 @@ if(isset($_POST['save_student']))
     
     
 
-    //$query = "INSERT INTO user (uemail, ufname, umname, ulname, upassword) VALUES ('$email','$firstName','$middleName','$lastName' ,'$password')";
-    $query = "INSERT INTO user (email, firstName, lastName, password) VALUES ('$email','$firstName','$lastName' ,'$password')";
+    $query = "INSERT INTO user (uemail, ufname, umname, ulname, upassword) VALUES ('$email','$firstName','$middleName','$lastName' ,'$password')";
+   // $query = "INSERT INTO user (email, firstName, lastName, password) VALUES ('$email','$firstName','$lastName' ,'$password')";
     $query_run = mysqli_query($con, $query);
     if($query_run){
         $_SESSION['message'] = "Student Created Successfully";

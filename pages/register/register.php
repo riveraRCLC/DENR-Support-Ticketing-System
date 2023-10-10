@@ -20,7 +20,7 @@ session_start();
 <body class="hold-transition register-page">
 <div class="register-box">
   <div class="register-logo">
-    <a href="../../index2.html"><b>TICKETING </b>SYSTEM</a>
+    <a href="/DENR-Support-Ticketing-System/index.php"><b>TICKETING </b>SYSTEM</a>
   </div>
   <?php include('message.php'); ?>
   <div class="card">

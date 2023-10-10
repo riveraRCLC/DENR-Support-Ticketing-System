@@ -17,7 +17,7 @@
 <body class="hold-transition login-page">
 <div class="login-box">
   <div class="login-logo">
-    <a href="../../index2.html"><b>TICKETING </b>SYSTEM</a>
+  <a href="/DENR-Support-Ticketing-System/index.php"><b>TICKETING </b>SYSTEM</a>
   </div>
   <!-- /.login-logo -->
   <div class="card">
