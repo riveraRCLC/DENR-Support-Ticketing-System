@@ -29,7 +29,7 @@ session_start();
 
      
 
-          <form action="code.php" method="POST">
+          <form action="code-register.php" method="POST">
         <div class="input-group mb-3">
             <input type="email" name="email" class="form-control" placeholder="Email">
             <div class="input-group-append">
@@ -91,7 +91,7 @@ session_start();
             </div>
             <!-- /.col -->
             <div class="col-4">
-                <button type="submit" name="save_student" class="btn btn-primary btn-block" onclick="return validatePassword()">Register</button>
+                <button type="submit" name="register_acct" class="btn btn-primary btn-block" onclick="return validatePassword()">Register</button>
             </div>
             <!-- /.col -->
         </div>

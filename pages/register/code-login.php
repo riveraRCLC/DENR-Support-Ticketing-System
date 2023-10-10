@@ -2,7 +2,7 @@
 session_start();        
 require 'config.php';
 
-if(isset($_POST['save_student']))
+if(isset($_POST['submit_acct']))
 {
     $email = mysqli_real_escape_string($con,$_POST['email']);
     $firstName = mysqli_real_escape_string($con,$_POST['firstName']);
