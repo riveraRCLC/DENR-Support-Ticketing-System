@@ -10,10 +10,33 @@ if(isset($_POST['register_acct']))
     $lastName = mysqli_real_escape_string($con,$_POST['lastName']);
     $password = mysqli_real_escape_string($con,$_POST['password']);
     
+    // Check if any of the fields are empty
+    if(empty($email) || empty($firstName) || empty($lastName) || empty($password)){
+        $_SESSION['message'] = "All fields are required. Please fill in all the fields.";
+        header("Location: register.php");
+        exit(0);
+    }
     
-
+    // Check if the email is already in use
+    $check_query = "SELECT * FROM user WHERE uemail = '$email'";
+    $check_result = mysqli_query($con, $check_query);
+    
+    if(mysqli_num_rows($check_result) > 0) {
+        $_SESSION['message'] = "Email is already in use. Please choose another email.";
+        header("Location: register.php");
+        exit(0);
+    }
+    
+    // Check if the password meets the requirements (8 characters and alphanumeric)
+    if(strlen($password) < 8 || !preg_match('/^(?=.*[0-9])(?=.*[A-Za-z]).{8,}$/', $password)){
+        $_SESSION['message'] = "Password must be at least 8 characters long and contain both letters and numbers.";       
+        header("Location: register.php");
+        exit(0);
+    }
+    
+    // If email is not in use, password meets requirements, and all fields are filled, proceed to insert the user
     $query = "INSERT INTO user (uemail, ufname, umname, ulname, upassword) VALUES ('$email','$firstName','$middleName','$lastName' ,'$password')";
-   // $query = "INSERT INTO user (email, firstName, lastName, password) VALUES ('$email','$firstName','$lastName' ,'$password')";
+    
     $query_run = mysqli_query($con, $query);
     if($query_run){
         $_SESSION['message'] = "Student Created Successfully";

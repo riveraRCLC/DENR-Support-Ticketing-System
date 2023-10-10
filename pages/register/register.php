@@ -29,7 +29,7 @@ session_start();
 
      
 
-          <form action="code-register.php" method="POST">
+          <form action="code-register.php" method="POST" onsubmit="return validateForm()">
         <div class="input-group mb-3">
             <input type="email" name="email" class="form-control" placeholder="Email">
             <div class="input-group-append">
@@ -91,26 +91,63 @@ session_start();
             </div>
             <!-- /.col -->
             <div class="col-4">
-                <button type="submit" name="register_acct" class="btn btn-primary btn-block" onclick="return validatePassword()">Register</button>
+                <button type="submit" name="register_acct" class="btn btn-primary btn-block">Register</button>
             </div>
             <!-- /.col -->
         </div>
     </form>
 
     <script>
-        function validatePassword() {
-            var password = document.getElementById('password').value;
-            var passwordConfirm = document.getElementById('passwordConfirm').value;
-
-            if (password !== passwordConfirm) {
-                alert("Passwords do not match. Please confirm your password.");
-                return false; // Prevent form submission
+            function validateForm() {
+                // Get the input values
+                var email = document.getElementsByName("email")[0].value;
+                var firstName = document.getElementsByName("firstName")[0].value;
+                var middleName = document.getElementsByName("middleName")[0].value;
+                var lastName = document.getElementsByName("lastName")[0].value;
+                var password = document.getElementById("password").value;
+                var passwordConfirm = document.getElementById("passwordConfirm").value;
+                
+                // Check for empty fields
+                if (email === "" || firstName === "" || lastName === "" || password === "" || passwordConfirm === "") {
+                    alert("All fields are required. Please fill in all the fields.");
+                    return false; // Prevent form submission
+                }
+                
+                // Check if the password meets the requirements (8 characters and alphanumeric)
+                if (password.length < 8 || !/^(?=.*[0-9])(?=.*[A-Za-z]).{8,}$/.test(password)) {
+                    alert("Password must be at least 8 characters long and contain both letters and numbers.");
+                    return false; // Prevent form submission
+                }
+                
+                // Check if password and passwordConfirm match
+                if (password !== passwordConfirm) {
+                    alert("Password and Confirm Password do not match.");
+                    return false; // Prevent form submission
+                }
+                
+                // Check if First Name, Middle Name, and Last Name contain numbers
+                var nameRegex = /^[A-Za-z]+$/;
+                if (!nameRegex.test(firstName) || !nameRegex.test(middleName) || !nameRegex.test(lastName)) {
+                    alert("First Name, Middle Name, and Last Name should not contain numbers.");
+                    return false; // Prevent form submission
+                }
+                
+                // Capitalize the first character of First Name, Middle Name, and Last Name
+                firstName = firstName.charAt(0).toUpperCase() + firstName.slice(1);
+                middleName = middleName.charAt(0).toUpperCase() + middleName.slice(1);
+                lastName = lastName.charAt(0).toUpperCase() + lastName.slice(1);
+                
+                // Update the input fields with the capitalized names
+                document.getElementsByName("firstName")[0].value = firstName;
+                document.getElementsByName("middleName")[0].value = middleName;
+                document.getElementsByName("lastName")[0].value = lastName;
+                
+                // If all checks pass, allow the form submission
+                return true;
             }
-
-            // If passwords match, the form will be submitted as usual
-            return true;
-        }
     </script>
+
+
     </form>
 
 
