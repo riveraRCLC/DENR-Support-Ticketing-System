@@ -17,13 +17,15 @@ if(isset($_POST['register_acct']))
     $query_run = mysqli_query($con, $query);
     if($query_run){
         $_SESSION['message'] = "Student Created Successfully";
-        header("Location: /DENR-Support-Ticketing-System/pages/Dashboard/dashboard.php");
+        header("Location: /DENR-Support-Ticketing-System/pages/register/login.php");
         exit(0);
     }else{
         $_SESSION['message'] = "Student NOT CREATED";
         header("Location: register.php");
-         exit(0);
+        exit(0);
     }
-
 }
+
+// Close the PHP session
+session_write_close();
 ?>

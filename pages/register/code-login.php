@@ -1,29 +1,49 @@
 <?php
 session_start();        
-require 'config.php';
+include "config.php";
 
-if(isset($_POST['submit_acct']))
-{
-    $email = mysqli_real_escape_string($con,$_POST['email']);
-    $firstName = mysqli_real_escape_string($con,$_POST['firstName']);
-    $middleName = mysqli_real_escape_string($con,$_POST['middleName']);
-    $lastName = mysqli_real_escape_string($con,$_POST['lastName']);
-    $password = mysqli_real_escape_string($con,$_POST['password']);
-    
-    
-
-    $query = "INSERT INTO user (uemail, ufname, umname, ulname, upassword) VALUES ('$email','$firstName','$middleName','$lastName' ,'$password')";
-   // $query = "INSERT INTO user (email, firstName, lastName, password) VALUES ('$email','$firstName','$lastName' ,'$password')";
-    $query_run = mysqli_query($con, $query);
-    if($query_run){
-        $_SESSION['message'] = "Student Created Successfully";
-        header("Location: login.php");
-        exit(0);
-    }else{
-        $_SESSION['message'] = "Student NOT CREATED";
-        header("Location: login.php");
-         exit(0);
+if(isset($_POST['email']) && isset($_POST['password'])){
+    function validate($data){
+        $data = trim($data);
+        $data = stripslashes($data);
+        $data = htmlspecialchars($data);
+        return $data;
     }
 
+    $email = validate($_POST['email']);
+    $password = validate($_POST['password']);
+
+    if(empty($email)){
+        $_SESSION['message'] = "Email is Required";
+        header("Location: /DENR-Support-Ticketing-System/pages/register/login.php?error=Email is Required");
+        exit();
+    } else if(empty($password)){
+        $_SESSION['message'] = "Password is Required";
+        header("Location: /DENR-Support-Ticketing-System/pages/register/login.php?error=Password is Required");
+        exit();
+    } else {
+        $sql = "SELECT * FROM user WHERE uemail='$email' AND upassword='$password'";
+        $result = mysqli_query($con, $sql);
+
+        if(mysqli_num_rows($result) > 0){
+            // User found in the database, perform login actions here
+            header("Location: /DENR-Support-Ticketing-System/pages/Dashboard/dashboard.php");
+        } else {
+            // User not found, display an error message and redirect
+            $_SESSION['message'] = "Incorrect User or Password!";
+            header("Location: /DENR-Support-Ticketing-System/pages/register/login.php?error=Invalid Email or Password");
+            exit();
+        }
+    }
+
+} else {
+    header("Location: /DENR-Support-Ticketing-System/pages/register/login.php");
+    exit();
 }
 ?>
+
+
+
+
+
+

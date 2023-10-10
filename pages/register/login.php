@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,6 +22,7 @@
     <div class="register-logo">
     <a href="/DENR-Support-Ticketing-System/index.php"><b>TICKETING </b>SYSTEM</a>
       </div>
+      <?php include('message.php'); ?>  
   <!-- /.login-logo -->
   <div class="card">
     <div class="card-body login-card-body">
@@ -52,7 +56,7 @@
           </div>
           <!-- /.col -->
           <div class="col-4">
-            <button type="submit_acct" class="btn btn-primary btn-block">Sign In</button>
+            <button type="submit" name="login_acct"  class="btn btn-primary btn-block">Sign In</button>
           </div>
           <!-- /.col -->
         </div>
