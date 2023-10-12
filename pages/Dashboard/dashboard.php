@@ -142,7 +142,7 @@
                 </a>
                 <ul class="nav nav-treeview">
                   <li class="nav-item">
-                    <a href="pages/TestingGround/Test1.html" class="nav-link">
+                    <a href="/DENR-Support-Ticketing-System/pages/TestingGround/Test1.html" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
                       <p>TestPage1</p>
                     </a>
