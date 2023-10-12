@@ -27,12 +27,7 @@ if(isset($_POST['register_acct']))
         exit(0);
     }
     
-    // Check if the password meets the requirements (8 characters and alphanumeric)
-    if(strlen($password) < 8 || !preg_match('/^(?=.*[0-9])(?=.*[A-Za-z]).{8,}$/', $password)){
-        $_SESSION['message'] = "Password must be at least 8 characters long and contain both letters and numbers.";       
-        header("Location: register.php");
-        exit(0);
-    }
+   
     
     // If email is not in use, password meets requirements, and all fields are filled, proceed to insert the user
     $query = "INSERT INTO user (uemail, ufname, umname, ulname, upassword) VALUES ('$email','$firstName','$middleName','$lastName' ,'$password')";

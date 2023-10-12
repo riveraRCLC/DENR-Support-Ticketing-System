@@ -126,7 +126,7 @@ session_start();
                 }
                 
                 // Check if First Name, Middle Name, and Last Name contain numbers
-                var nameRegex = /^[A-Za-z]+$/;
+                var nameRegex = /^[A-Za-z\s]+$/;
                 if (!nameRegex.test(firstName) || !nameRegex.test(middleName) || !nameRegex.test(lastName)) {
                     alert("First Name, Middle Name, and Last Name should not contain numbers.");
                     return false; // Prevent form submission
