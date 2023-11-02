@@ -335,6 +335,9 @@
                 </div>
                 <!-- /.float-right -->
               </div>
+
+
+              <!-- TO PUT THE REPETIVE FOR LOOP PROVIDNG HTML CODE LIKE YOU DID IN YOUR SYSTEM IN PCO -->
               <div class="table-responsive mailbox-messages">
                 <table class="table table-hover table-striped">
                   <tbody>
@@ -352,6 +355,9 @@
                     <td class="mailbox-attachment"></td>
                     <td class="mailbox-date">5 mins ago</td>
                   </tr>
+                  
+
+
                   <tr>
                     <td>
                       <div class="icheck-primary">
@@ -548,12 +554,17 @@
                     <td class="mailbox-attachment"><i class="fas fa-paperclip"></i></td>
                     <td class="mailbox-date">15 days ago</td>
                   </tr>
+                  
+
                   </tbody>
                 </table>
                 <!-- /.table -->
               </div>
               <!-- /.mail-box-messages -->
             </div>
+
+
+
             <!-- /.card-body -->
             <div class="card-footer p-0">
               <div class="mailbox-controls">
