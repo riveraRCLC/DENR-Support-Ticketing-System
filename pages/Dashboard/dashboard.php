@@ -1,3 +1,6 @@
+<?php
+  session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -54,6 +57,15 @@
         <div class="info">
           <a href="#" class="d-block">Alexander Pierce</a>
         </div>
+
+        <?php
+          if(isset($_SESSION['userid'])){
+            echo "<li class='nav-item'><a class='nav-link' href='/DENR-Support-Ticketing-System/pages/homepageTabs/Logout.php'>Logout</a></li>";
+          }else{
+            echo "<li class='nav-item'><a class='nav-link' href='/DENR-Support-Ticketing-System/pages/homepageTabs/Logout.php'>Log In</a></li>";   
+          }
+        ?>
+
       </div>
 
   
