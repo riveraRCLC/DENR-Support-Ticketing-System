@@ -1,6 +1,9 @@
 <?php
-session_start();        
+session_start();
 include "config.php";
+
+// Update session timeout value in seconds
+ini_set('session.gc_maxlifetime', $session_timeout);
 
 if(isset($_POST['email']) && isset($_POST['password'])){
     function validate($data){
@@ -27,6 +30,14 @@ if(isset($_POST['email']) && isset($_POST['password'])){
 
         if(mysqli_num_rows($result) > 0){
             // User found in the database, perform login actions here
+            $user = mysqli_fetch_assoc($result);
+
+            // Insert a new row into the session table
+            $sql = "INSERT INTO user_sessions (session_id, user_id) VALUES (?, ?)";
+            $stmt = mysqli_prepare($con, $sql);
+            mysqli_stmt_bind_param($stmt, "ss", session_id(), $user['uid']);
+            mysqli_stmt_execute($stmt);
+
             header("Location: /DENR-Support-Ticketing-System/pages/Dashboard/dashboard.php");
         } else {
             // User not found, display an error message and redirect
@@ -41,9 +52,3 @@ if(isset($_POST['email']) && isset($_POST['password'])){
     exit();
 }
 ?>
-
-
-
-
-
-
