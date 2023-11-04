@@ -340,7 +340,7 @@
               <!-- TO PUT THE REPETIVE FOR LOOP PROVIDNG HTML CODE LIKE YOU DID IN YOUR SYSTEM IN PCO -->
               <div class="table-responsive mailbox-messages">
                 <table class="table table-hover table-striped">
-                  <tbody>
+                  <tbody id="inbox_data">
               <!-- HERE IT STARTSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS   -->      
                   <tr>
                     <td>
@@ -358,6 +358,8 @@
                     <td class="mailbox-date">5 mins ago</td>
 
                   </tr>
+
+                  
                   
 
 
@@ -365,10 +367,76 @@
 
                   </tbody>
                 </table>
+                <p class="loading">Loading Data</p>
                 <!-- /.table -->
               </div>
               <!-- /.mail-box-messages -->
             </div>
+
+            <!-- FOR POPULATING THE INBOX TABLE  -->
+            <script>
+              function employeeList() {
+                    $.ajax({
+                        type: 'get',
+                        url: "inbox-list.inc.php",
+                        success: function (data) {
+                            var response = JSON.parse(data);
+                            console.log(response);
+                            var tr = '';
+                            for (var i = 0; i < response.length; i++) {
+                                var tid = response[i].tid;
+                                var tsub = response[i].tsub;
+                                var tuserid = response[i].tuserid;
+                                var ttowhomid = response[i].ttowhomid;
+                                var tbody = response[i].tbody;
+                                /*
+                                tr += '<tr>';
+                                tr += '<td>' + tid + '</td>';
+                                tr += '<td>' + tsub + '</td>';
+                                tr += '<td>' + tuserid + '</td>';
+                                tr += '<td>' + ttowhomid + '</td>';
+                                tr += '<td>' + tbody + '</td>';
+                                tr += '<td><div class="d-flex">';
+                                tr +=
+                                    '<a href="#viewEmployeeModal" class="m-1 view" data-toggle="modal" onclick=viewEmployee("' +
+                                    tid + '")><i class="fa" data-toggle="tooltip" title="view">&#xf06e;</i></a>';
+                                tr +=
+                                    '<a href="#editEmployeeModal" class="m-1 edit" data-toggle="modal" onclick=viewEmployee("' +
+                                    tid +
+                                    '")><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>';
+                                tr +=
+                                    '<a href="#deleteEmployeeModal" class="m-1 delete" data-toggle="modal" onclick=$("#delete_id").val("' +
+                                    tid +
+                                    '")><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>';
+                                tr += '</div></td>';
+                                tr += '</tr>';
+                                */
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                                tr += '<tr>';
+                                tr += '<td>' ;
+                                tr += '<div class="icheck-primary">';
+                                tr += '<input type="checkbox" value="" id="check1">';
+                                tr += '<label for="check1"></label>';
+                                tr += '</div>';
+                                tr += '</td>';
+                                tr +=
+                                    '<td class="mailbox-star"><a href="#"><i class="fas fa-star text-warning"></i></a></td>';
+                                tr +=
+                                    '<td class="mailbox-name"><a href="/DENR-Support-Ticketing-System/pages/mailbox/read-mail.html">Alexander Pierce</a></td>';
+                                tr +=
+                                    '<td class="mailbox-subject"><b>AdminLTE 3.0 Issue</b> - Trying to find a solution to this problem...';
+                                tr += '</td>';
+                                tr += '<td class="mailbox-attachment"></td>';
+                                tr += '<td class="mailbox-date">5 mins ago</td>';
+
+                            }
+                            $('.loading').hide();
+                            $('#inbox_data').html(tr);
+                        }
+                    });
+                }
+            </script>
+
 
 
 
