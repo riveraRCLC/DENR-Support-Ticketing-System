@@ -342,7 +342,7 @@
                 <table class="table table-hover table-striped">
                   <tbody id="inbox_data">
               <!-- HERE IT STARTSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS   -->      
-                  <tr>
+              <tr>
                     <td>
                       <div class="icheck-primary">
                         <input type="checkbox" value="" id="check1">
@@ -358,7 +358,7 @@
                     <td class="mailbox-date">5 mins ago</td>
 
                   </tr>
-
+                   <!-- HERE IT STARTSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS   -->   
                   
                   
 
@@ -375,10 +375,14 @@
 
             <!-- FOR POPULATING THE INBOX TABLE  -->
             <script>
+              $(document).ready(function () {
+                employeeList();
+
+              });
               function employeeList() {
                     $.ajax({
                         type: 'get',
-                        url: "inbox-list.inc.php",
+                        url: "/DENR-Support-Ticketing-System/pages/mailbox/includes/inbox-list.inc.php",
                         success: function (data) {
                             var response = JSON.parse(data);
                             console.log(response);
