@@ -23,6 +23,9 @@
 
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
+<?php
+if($_SESSION["email"]) {
+?>
 <div class="wrapper">
 
   
@@ -103,18 +106,18 @@
               </li>
 
               <!-- TESTING LOG IN        ------------------------------------------ -->
-              <?php
-                if($_SESSION["email"]) {
-                ?>
+              
+
+
               <li class="nav-item menu-open">
                 <a href="/DENR-Support-Ticketing-System/pages/register/includes/logout.inc.php" class="nav-link active">
                   <i class="nav-icon fas fa-tachometer-alt"></i>
                   <p>
                   Welcome <?php echo $_SESSION["email"]; ?>.<br>
                    Click here to Logout.
-                <?php
-                }else echo "<h1>Please login first .</h1>";
-                ?>
+
+
+                
                   </p>
                 </a>
               </li>
@@ -349,6 +352,13 @@
 
 <!-- AdminLTE App -->
 <script src="/DENR-Support-Ticketing-System/dist/js/adminlte.js"></script>
+
+
+<!-- ELSE STATEMENT IF DOES NOT LOG IN -->
+<?php
+}else echo "<h1>Please login first .</h1>";
+?>
+
 
 </body>
 </html>
