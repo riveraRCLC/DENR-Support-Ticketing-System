@@ -58,11 +58,7 @@
           <a href="#" class="d-block">Alexander Pierce</a>
           
         </div>
-        <?php
-               if (isset($_SESSION['user_id'])) {
-                  echo "<li> <a href =''> LOG OUT </a></li>";
-               }
-          ?>
+     
       </div>
 
   
@@ -105,7 +101,26 @@
                   </li>
                 </ul>
               </li>
-    
+
+              <!-- TESTING LOG IN        ------------------------------------------ -->
+              <?php
+                if($_SESSION["email"]) {
+                ?>
+              <li class="nav-item menu-open">
+                <a href="/DENR-Support-Ticketing-System/pages/register/includes/logout.inc.php" class="nav-link active">
+                  <i class="nav-icon fas fa-tachometer-alt"></i>
+                  <p>
+                  Welcome <?php echo $_SESSION["email"]; ?>.<br>
+                   Click here to Logout.
+                <?php
+                }else echo "<h1>Please login first .</h1>";
+                ?>
+                  </p>
+                </a>
+              </li>
+              
+              
+                
     
     
               

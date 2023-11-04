@@ -82,7 +82,7 @@ function emptyInputLogin($email, $password){
 }
 
 function loginUser($conn,$email, $password){
-    $emailExist = emailExist($conn, $email);
+    /* $emailExist = emailExist($conn, $email);
 
     if($emailExist === false){
         echo "User doesn't exist";
@@ -106,5 +106,23 @@ function loginUser($conn,$email, $password){
         $_SESSION["uemaIL"]= $emailExist["uemail"];
         header("Location: /DENR-Support-Ticketing-System/pages/Dashboard/dashboard.php");
         exit();
+    } */
+
+    session_start();
+    $message="";
+    
+        
+        $result = mysqli_query($conn, "SELECT * FROM user WHERE uemail='" . $email . "' and upassword = '" . $password . "'");
+        $row  = mysqli_fetch_array($result);
+        if(is_array($row)) {
+        $_SESSION["id"] = $row['userid'];
+        $_SESSION["email"] = $row['uemail'];
+        } else {
+         $message = "Invalid Username or Password!";
+        }
+    
+    if(isset($_SESSION["id"])) {
+        header("Location: /DENR-Support-Ticketing-System/pages/Dashboard/dashboard.php");
+       // exit();
     }
 }
