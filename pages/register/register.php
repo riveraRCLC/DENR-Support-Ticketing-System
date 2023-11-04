@@ -29,7 +29,9 @@ session_start();
 
      
 
-          <form action="code-register.php" method="POST" onsubmit="return validateForm()">
+          
+          <!-- <form action="code-register.php" method="POST" onsubmit="return validateForm()">    -->
+          <form action="includes/signup.inc.php" method="POST" >
         <div class="input-group mb-3">
             <input type="email" name="email" class="form-control" placeholder="Email">
             <div class="input-group-append">

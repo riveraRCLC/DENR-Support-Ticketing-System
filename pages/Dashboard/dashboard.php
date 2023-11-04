@@ -1,3 +1,6 @@
+<?php
+  session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -53,7 +56,13 @@
         </div>
         <div class="info">
           <a href="#" class="d-block">Alexander Pierce</a>
+          
         </div>
+        <?php
+               if (isset($_SESSION['user_id'])) {
+                  echo "<li> <a href =''> LOG OUT </a></li>";
+               }
+          ?>
       </div>
 
   
