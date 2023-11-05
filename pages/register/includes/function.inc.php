@@ -62,9 +62,9 @@ function createUser($conn, $email, $firstName, $middleName, $lastName, $password
         exit();
     }
 
-    $hashedPwd = password_hash($password, PASSWORD_DEFAULT);
-
-    mysqli_stmt_bind_param($stmt, "sssss", $email, $firstName, $middleName, $lastName, $hashedPwd);
+   // $hashedPwd = password_hash($password, PASSWORD_DEFAULT);
+                                                                                      //$hashedPwd   
+    mysqli_stmt_bind_param($stmt, "sssss", $email, $firstName, $middleName, $lastName, $password);
     mysqli_stmt_execute($stmt);
     mysqli_stmt_close($stmt);
     header("Location: /DENR-Support-Ticketing-System/pages/register/login.php");
