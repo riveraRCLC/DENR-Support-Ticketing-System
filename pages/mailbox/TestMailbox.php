@@ -469,6 +469,7 @@
                                 var tuserid = response[i].tuserid;
                                 var ttowhomid = response[i].ttowhomid;
                                 var tbody = response[i].tbody;
+                                var tdate = response[i].tdate;
                                 /*
                                 tr += '<tr>';
                                 tr += '<td>' + tid + '</td>';
@@ -476,6 +477,8 @@
                                 tr += '<td>' + tuserid + '</td>';
                                 tr += '<td>' + ttowhomid + '</td>';
                                 tr += '<td>' + tbody + '</td>';
+                                tr += '<td>' + tdate + '</td>';
+
                                 tr += '<td><div class="d-flex">';
                                 tr +=
                                     '<a href="#viewEmployeeModal" class="m-1 view" data-toggle="modal" onclick=viewEmployee("' +
@@ -502,12 +505,12 @@
                                 tr +=
                                     '<td class="mailbox-star"><a href="#"><i class="fas fa-star text-warning"></i></a></td>';
                                 tr +=
-                                    '<td class="mailbox-name"><a href="/DENR-Support-Ticketing-System/pages/mailbox/read-mail.html">Alexander Pierce</a></td>';
+                                    '<td class="mailbox-name"><a href="/DENR-Support-Ticketing-System/pages/mailbox/read-mail.html">' + tuserid + '</a></td>';
                                 tr +=
-                                    '<td class="mailbox-subject"><b>AdminLTE 3.0 Issue</b> - Trying to find a solution to this problem...';
+                                    '<td class="mailbox-subject"><b>' + tsub + '</b> - ' + tbody + '...';
                                 tr += '</td>';
                                 tr += '<td class="mailbox-attachment"></td>';
-                                tr += '<td class="mailbox-date">5 mins ago</td>';
+                                tr += '<td class="mailbox-date">' + tdate + '</td>';
 
                             }
                             $('.loading').hide();
