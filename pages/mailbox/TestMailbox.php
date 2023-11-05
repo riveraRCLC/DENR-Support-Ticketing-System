@@ -452,10 +452,10 @@
 
   // <!-- FOR POPULATING THE INBOX TABLE  -->
          $(document).ready(function () {
-                employeeList();
+              InboxList();
 
               });
-              function employeeList() {
+              function InboxList() {
                     $.ajax({
                         type: 'get',
                         url: "/DENR-Support-Ticketing-System/pages/mailbox/includes/inbox-list.inc.php",
@@ -470,31 +470,7 @@
                                 var ttowhomid = response[i].ttowhomid;
                                 var tbody = response[i].tbody;
                                 var tdate = response[i].tdate;
-                                /*
-                                tr += '<tr>';
-                                tr += '<td>' + tid + '</td>';
-                                tr += '<td>' + tsub + '</td>';
-                                tr += '<td>' + tuserid + '</td>';
-                                tr += '<td>' + ttowhomid + '</td>';
-                                tr += '<td>' + tbody + '</td>';
-                                tr += '<td>' + tdate + '</td>';
-
-                                tr += '<td><div class="d-flex">';
-                                tr +=
-                                    '<a href="#viewEmployeeModal" class="m-1 view" data-toggle="modal" onclick=viewEmployee("' +
-                                    tid + '")><i class="fa" data-toggle="tooltip" title="view">&#xf06e;</i></a>';
-                                tr +=
-                                    '<a href="#editEmployeeModal" class="m-1 edit" data-toggle="modal" onclick=viewEmployee("' +
-                                    tid +
-                                    '")><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>';
-                                tr +=
-                                    '<a href="#deleteEmployeeModal" class="m-1 delete" data-toggle="modal" onclick=$("#delete_id").val("' +
-                                    tid +
-                                    '")><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>';
-                                tr += '</div></td>';
-                                tr += '</tr>';
-                                */
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                           
                                 tr += '<tr>';
                                 tr += '<td>' ;
                                 tr += '<div class="icheck-primary">';
