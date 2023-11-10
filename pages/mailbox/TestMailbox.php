@@ -431,9 +431,7 @@
 <script src="../../dist/js/demo.js"></script>
 <!-- Page specific script -->
 <script>
- function testingPass(testss){
-   document.getElementById("TESTINGid").textContent = localStorage.getItem("mycheck"+testss+"");
- } 
+
   
  function passValues(rowSelected) {
   var getSenderUserID = document.getElementById("mycheck" + rowSelected).innerText;
@@ -474,15 +472,13 @@
                                     '<td class="mailbox-star"><a href="#"><i class="fas fa-star text-warning"></i></a></td>';
                                 tr +=
                                       ///DENR-Support-Ticketing-System/pages/mailbox/TestReadMail.php <a href="" data-row="' + [i] + '" onclick="passValues(' + [i] + ')">
-                                    '<td class="mailbox-name" id="mycheck'+[i]+'" ><a href="" onclick="passValues(' + [i] + ')" >' + tuserid + '</a></td>';
+                                    '<td class="mailbox-name" id="mycheck'+[i]+'" ><a href="/DENR-Support-Ticketing-System/pages/mailbox/TestReadMail.php" onclick="passValues(' + [i] + ')" >' + tuserid + '</a></td>';
                                 tr +=
                                     '<td class="mailbox-subject"><b>' + tsub + '</b> - ' + tbody + '...';
                                 tr += '</td>';
                                 tr += '<td class="mailbox-attachment"></td>';
                                 tr += '<td class="mailbox-date">' + tdate + '</td>';
-                                
-                                //testing if it will pass values
-                               // testingPass([i]);
+                              
 
                             }
                             $('.loading').hide();
