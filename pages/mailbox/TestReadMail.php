@@ -183,7 +183,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 id="TESTINGidREAD"></h1>
+            <h1>Compose</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -289,7 +289,7 @@
             <div class="card-body p-0">
               <div class="mailbox-read-info">
                 <h5>Message Subject Is Placed Here</h5>
-                <h6>From: support@adminlte.io
+                <h6 id="TESTINGidREAD" >
                   <span class="mailbox-read-time float-right">15 Feb. 2015 11:03 PM</span></h6>
               </div>
               <!-- /.mailbox-read-info -->
@@ -442,7 +442,10 @@
 <!-- AdminLTE for demo purposes -->
 <script src="../../dist/js/demo.js"></script>
 <script>
-    document.getElementById("TESTINGidREAD").textContent = localStorage.getItem("getSenderUserID");
+
+    var tempUserID = localStorage.getItem("getSenderUserID");
+    var tempMerge = "From: "+ tempUserID;
+    document.getElementById("TESTINGidREAD").textContent = tempMerge;
 
 </script>
 </body>
