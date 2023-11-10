@@ -201,7 +201,7 @@
     <section class="content">
       <div class="row">
         <div class="col-md-3">
-          <a href="/DENR-Support-Ticketing-System/pages/mailbox/compose.html" class="btn btn-primary btn-block mb-3">Create Ticket</a>
+          <a href="/DENR-Support-Ticketing-System/pages/mailbox/TestCompose.php" class="btn btn-primary btn-block mb-3">Create Ticket</a>
 
           <div class="card">
             <div class="card-header">
@@ -341,30 +341,11 @@
               <div class="table-responsive mailbox-messages">
                 <table class="table table-hover table-striped">
                   <tbody id="inbox_data">
-              <!-- HERE IT STARTSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS   -->      
-              <tr>
-                    <td>
-                      <div class="icheck-primary">
-                        <input type="checkbox" value="" id="check1">
-                        <label for="check1"></label>
-                      </div>
-                    </td>
 
-                    <td class="mailbox-star"><a href="#"><i class="fas fa-star text-warning"></i></a></td>
-                    <td class="mailbox-name"><a href="/DENR-Support-Ticketing-System/pages/mailbox/read-mail.html">Alexander Pierce</a></td>
-                    <td class="mailbox-subject"><b>AdminLTE 3.0 Issue</b> - Trying to find a solution to this problem...
-                    </td>
-                    <td class="mailbox-attachment"></td>
-                    <td class="mailbox-date">5 mins ago</td>
 
-                  </tr>
-                   <!-- HERE IT STARTSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS   -->   
-                  
-                  
-
+              <!-- HERE IT STARTSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS   -->          
 
               
-
                   </tbody>
                 </table>
                 <p class="loading">Loading Data</p>
@@ -481,7 +462,7 @@
                                 tr +=
                                     '<td class="mailbox-star"><a href="#"><i class="fas fa-star text-warning"></i></a></td>';
                                 tr +=
-                                    '<td class="mailbox-name"><a href="/DENR-Support-Ticketing-System/pages/mailbox/read-mail.html">' + tuserid + '</a></td>';
+                                    '<td class="mailbox-name"><a href="/DENR-Support-Ticketing-System/pages/mailbox/TestReadMail.php">' + tuserid + '</a></td>';
                                 tr +=
                                     '<td class="mailbox-subject"><b>' + tsub + '</b> - ' + tbody + '...';
                                 tr += '</td>';

@@ -200,7 +200,7 @@
       <div class="container-fluid">
         <div class="row">
           <div class="col-md-3">
-            <a href="/DENR-Support-Ticketing-System/pages/mailbox/mailbox.html" class="btn btn-primary btn-block mb-3">Back to Inbox</a>
+            <a href="/DENR-Support-Ticketing-System/pages/mailbox/TestMailbox.php" class="btn btn-primary btn-block mb-3">Back to Inbox</a>
 
             <div class="card">
               <div class="card-header">
