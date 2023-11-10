@@ -359,74 +359,8 @@
 <script>
    $(document).ready(function () {
               InboxList();
-
               });
-              function InboxList() {
-                    $.ajax({
-                        type: 'get',
-                        url: "/DENR-Support-Ticketing-System/pages/mailbox/includes/inbox-list.inc.php",
-                        success: function (data) {
-                            var response = JSON.parse(data);
-                            console.log(response);
-                            var tr = '';
-                            for (var i = 0; i < response.length; i++) {
-                                var tid = response[i].tid;
-                                var tsub = response[i].tsub;
-                                var tuserid = response[i].tuserid;
-                                var ttowhomid = response[i].ttowhomid;
-                                var tbody = response[i].tbody;
-                                var tdate = response[i].tdate;
-                           
-                                tr += '<tr>';
-                                tr += '<td>' ;
-                                tr += '<div class="icheck-primary">';
-                                tr += '<input type="checkbox" value="" id="check1">';
-                                tr += '<label for="check1"></label>';
-                                tr += '</div>';
-                                tr += '</td>';
-                                tr +=
-                                    '<td class="mailbox-star"><a href="#"><i class="fas fa-star text-warning"></i></a></td>';
-                                tr +=
-                                    '<td class="mailbox-name"><a href="/DENR-Support-Ticketing-System/pages/mailbox/read-mail.html">' + tuserid + '</a></td>';
-                                tr +=
-                                    '<td class="mailbox-subject"><b>' + tsub + '</b> - ' + tbody + '...';
-                                tr += '</td>';
-                                tr += '<td class="mailbox-attachment"></td>';
-                                tr += '<td class="mailbox-date">' + tdate + '</td>';
-
-                            }
-                            $('.loading').hide();
-                            $('#inbox_data').html(tr);
-                        }
-                    });
-                }
-
-    /*
-  function addTicket() {
-            var tsub2 = $('.composeTicket #subject_input').val();
-            var tuserid2 = $('.composeTicket #to_input').val();
-            var ttowhomid2 = $('.composeTicket #to_input').val();
-            var tbody2 = $('.composeTicket #compose_textarea').val();
-
-            $.ajax({
-                type: 'post',
-                data: {
-                    tsub: tsub2,
-                    tuserid: tuserid2,
-                    ttowhomid: ttowhomid2,
-                    tbody: tbody2,
-                },
-                url: "/DENR-Support-Ticketing-System/pages/mailbox/includes/addTicket.inc.php",
-                success: function (data) {
-                    var response = JSON.parse(data);
-                   // $('#addEmployeeModal').modal('hide');
-                   // employeeList();
-                    alert(response.message);
-                }
-
-            })
-        }
-        */
+           
 
         function addTicket() {
     var tsub2 = $('#subject_input').val();
