@@ -185,7 +185,8 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Inbox</h1>
+          <!-- TESTINGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG -->
+            <h1 id="TESTINGid"></h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -345,7 +346,7 @@
 
               <!-- HERE IT STARTSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS   -->          
 
-              
+
                   </tbody>
                 </table>
                 <p class="loading">Loading Data</p>
@@ -430,6 +431,16 @@
 <script src="../../dist/js/demo.js"></script>
 <!-- Page specific script -->
 <script>
+ function testingPass(testss){
+   document.getElementById("TESTINGid").textContent = localStorage.getItem("mycheck"+testss+"");
+ } 
+  
+ function passValues(rowSelected) {
+  var getSenderUserID = document.getElementById("mycheck" + rowSelected).innerText;
+  localStorage.setItem("getSenderUserID", getSenderUserID);
+  document.getElementById("TESTINGid").textContent = localStorage.getItem("getSenderUserID");
+  console.log("Stored value in localStorage: " + getSenderUserID);
+}
 
   // <!-- FOR POPULATING THE INBOX TABLE  -->
          $(document).ready(function () {
@@ -451,23 +462,27 @@
                                 var ttowhomid = response[i].ttowhomid;
                                 var tbody = response[i].tbody;
                                 var tdate = response[i].tdate;
-                           
+                                
                                 tr += '<tr>';
                                 tr += '<td>' ;
                                 tr += '<div class="icheck-primary">';
-                                tr += '<input type="checkbox" value="" id="check1">';
+                                tr += '<input type="checkbox" value="" id="check'+[i]+'">';
                                 tr += '<label for="check1"></label>';
                                 tr += '</div>';
                                 tr += '</td>';
                                 tr +=
                                     '<td class="mailbox-star"><a href="#"><i class="fas fa-star text-warning"></i></a></td>';
                                 tr +=
-                                    '<td class="mailbox-name"><a href="/DENR-Support-Ticketing-System/pages/mailbox/TestReadMail.php">' + tuserid + '</a></td>';
+                                      ///DENR-Support-Ticketing-System/pages/mailbox/TestReadMail.php <a href="" data-row="' + [i] + '" onclick="passValues(' + [i] + ')">
+                                    '<td class="mailbox-name" id="mycheck'+[i]+'" ><a href="" onclick="passValues(' + [i] + ')" >' + tuserid + '</a></td>';
                                 tr +=
                                     '<td class="mailbox-subject"><b>' + tsub + '</b> - ' + tbody + '...';
                                 tr += '</td>';
                                 tr += '<td class="mailbox-attachment"></td>';
                                 tr += '<td class="mailbox-date">' + tdate + '</td>';
+                                
+                                //testing if it will pass values
+                               // testingPass([i]);
 
                             }
                             $('.loading').hide();
@@ -475,7 +490,7 @@
                         }
                     });
                 }
-
+                
 
 
   $(function () {

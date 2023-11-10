@@ -343,7 +343,7 @@
                   Apparel PBR listicle, salvia aesthetic occupy sustainable Neutra kogi. Organic synth Tumblr viral
                   plaid, shabby chic single-origin coffee Etsy 3 wolf moon slow-carb Schlitz roof party tousled squid
                   vinyl. Readymade next level literally trust fund. Distillery master cleanse migas, Vice sriracha
-                  flannel chambray chia cronut.</p>
+                  flannel chambray chia cro.</p>
 
                 <p>Thanks,<br>Jane</p>
               </div>
@@ -441,5 +441,9 @@
 <script src="../../dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="../../dist/js/demo.js"></script>
+<script>
+
+
+</script>
 </body>
 </html>
