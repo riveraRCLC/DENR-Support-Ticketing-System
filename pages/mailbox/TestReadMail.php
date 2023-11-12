@@ -35,7 +35,7 @@
           <a href="#" class="d-block">Alexander Pierce</a>
         </div>
       </div>
-
+la
     
 
       <!-- Sidebar Menu -->
@@ -288,9 +288,9 @@
             <!-- /.card-header -->
             <div class="card-body p-0">
               <div class="mailbox-read-info">
-                <h5>Message Subject Is Placed Here</h5>
+                <h5 id="TestSubb">Message Subject Is Placed Here</h5> 
                 <h6 id="TESTINGidREAD" >
-                  <span class="mailbox-read-time float-right">15 Feb. 2015 11:03 PM</span></h6>
+                  </h6>
               </div>
               <!-- /.mailbox-read-info -->
               <div class="mailbox-controls with-border text-center">
@@ -311,60 +311,16 @@
                 </button>
               </div>
               <!-- /.mailbox-controls -->
-              <div class="mailbox-read-message">
+              <div class="mailbox-read-message" id="letterBody">
                 
+                <!-- /.MESSAGE BODY POPULATE STARTS HEREEEE!!!! -->
+
+
               </div>
               <!-- /.mailbox-read-message -->
             </div>
             <!-- /.card-body -->
-            <div class="card-footer bg-white">
-              <ul class="mailbox-attachments d-flex align-items-stretch clearfix">
-                <li>
-                  <span class="mailbox-attachment-icon"><i class="far fa-file-pdf"></i></span>
-
-                  <div class="mailbox-attachment-info">
-                    <a href="#" class="mailbox-attachment-name"><i class="fas fa-paperclip"></i> Sep2014-report.pdf</a>
-                        <span class="mailbox-attachment-size clearfix mt-1">
-                          <span>1,245 KB</span>
-                          <a href="#" class="btn btn-default btn-sm float-right"><i class="fas fa-cloud-download-alt"></i></a>
-                        </span>
-                  </div>
-                </li>
-                <li>
-                  <span class="mailbox-attachment-icon"><i class="far fa-file-word"></i></span>
-
-                  <div class="mailbox-attachment-info">
-                    <a href="#" class="mailbox-attachment-name"><i class="fas fa-paperclip"></i> App Description.docx</a>
-                        <span class="mailbox-attachment-size clearfix mt-1">
-                          <span>1,245 KB</span>
-                          <a href="#" class="btn btn-default btn-sm float-right"><i class="fas fa-cloud-download-alt"></i></a>
-                        </span>
-                  </div>
-                </li>
-                <li>
-                  <span class="mailbox-attachment-icon has-img"><img src="../../dist/img/photo1.png" alt="Attachment"></span>
-
-                  <div class="mailbox-attachment-info">
-                    <a href="#" class="mailbox-attachment-name"><i class="fas fa-camera"></i> photo1.png</a>
-                        <span class="mailbox-attachment-size clearfix mt-1">
-                          <span>2.67 MB</span>
-                          <a href="#" class="btn btn-default btn-sm float-right"><i class="fas fa-cloud-download-alt"></i></a>
-                        </span>
-                  </div>
-                </li>
-                <li>
-                  <span class="mailbox-attachment-icon has-img"><img src="../../dist/img/photo2.png" alt="Attachment"></span>
-
-                  <div class="mailbox-attachment-info">
-                    <a href="#" class="mailbox-attachment-name"><i class="fas fa-camera"></i> photo2.png</a>
-                        <span class="mailbox-attachment-size clearfix mt-1">
-                          <span>1.9 MB</span>
-                          <a href="#" class="btn btn-default btn-sm float-right"><i class="fas fa-cloud-download-alt"></i></a>
-                        </span>
-                  </div>
-                </li>
-              </ul>
-            </div>
+           
             <!-- /.card-footer -->
             <div class="card-footer">
               <div class="float-right">
@@ -407,12 +363,27 @@
 <!-- AdminLTE App -->
 <script src="../../dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
-<script src="../../dist/js/demo.js"></script>
-<script>
 
-    var tempUserID = localStorage.getItem("getSenderUserID");
-    var tempMerge = "From: "+ tempUserID;
-    document.getElementById("TESTINGidREAD").textContent = tempMerge;
+<script>
+var tempUserID = localStorage.getItem("getSenderUserID");
+var tempUserID2 = tempUserID;
+var tempMerge = "From: " + tempUserID;
+var tempSub = localStorage.getItem("getSub");
+var tempBody = localStorage.getItem("getBody");
+var tempDate = localStorage.getItem("getDate");
+
+
+// Set the text content using pure JavaScript
+document.getElementById("TESTINGidREAD").textContent = tempMerge;                                                                                              
+
+
+$(document).ready(function () {
+    // Additional content using jQuery
+    var tr = '<span class="mailbox-read-time float-right">'+tempDate+'</span>';
+    $('#TESTINGidREAD').append(tr);
+    $('#TestSubb').html(tempSub);
+    $('#letterBody').html(tempBody);
+});
 
 </script>
 </body>

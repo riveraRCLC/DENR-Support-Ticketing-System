@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+  <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -428,14 +428,21 @@
 <!-- AdminLTE App -->
 <script src="../../dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
-<script src="../../dist/js/demo.js"></script>
+
 <!-- Page specific script -->
 <script>
 
   
  function passValues(rowSelected) {
   var getSenderUserID = document.getElementById("mycheck" + rowSelected).innerText;
+  var getSub = document.getElementById("mySub" + rowSelected).innerText;
+  var getBody = document.getElementById("myBody" + rowSelected).innerText;
+  var getDate = document.getElementById("myDate" + rowSelected).innerText;
   localStorage.setItem("getSenderUserID", getSenderUserID);
+  localStorage.setItem("getSub", getSub);
+  localStorage.setItem("getBody", getBody);
+  localStorage.setItem("getDate", getDate);
+
   document.getElementById("TESTINGid").textContent = localStorage.getItem("getSenderUserID");
   console.log("Stored value in localStorage: " + getSenderUserID);
 }
@@ -461,6 +468,8 @@
                                 var tbody = response[i].tbody;
                                 var tdate = response[i].tdate;
                                 
+                             
+
                                 tr += '<tr>';
                                 tr += '<td>' ;
                                 tr += '<div class="icheck-primary">';
@@ -474,10 +483,10 @@
                                       ///DENR-Support-Ticketing-System/pages/mailbox/TestReadMail.php <a href="" data-row="' + [i] + '" onclick="passValues(' + [i] + ')">
                                     '<td class="mailbox-name" id="mycheck'+[i]+'" ><a href="/DENR-Support-Ticketing-System/pages/mailbox/TestReadMail.php" onclick="passValues(' + [i] + ')" >' + tuserid + '</a></td>';
                                 tr +=
-                                    '<td class="mailbox-subject"><b>' + tsub + '</b> - ' + tbody + '...';
+                                    '<td class="mailbox-subject" id="mySub'+[i]+'"><b>' + tsub + '</b></td> - <td class="mailbox-body" id="myBody'+[i]+'">' + tbody + '</td>';
                                 tr += '</td>';
                                 tr += '<td class="mailbox-attachment"></td>';
-                                tr += '<td class="mailbox-date">' + tdate + '</td>';
+                                tr += '<td class="mailbox-date" id="myDate'+[i]+'">' + tdate + '</td>';
                               
 
                             }
