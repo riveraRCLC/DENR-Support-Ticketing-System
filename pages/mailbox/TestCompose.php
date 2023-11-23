@@ -1,3 +1,6 @@
+<?php
+  session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,6 +18,9 @@
   <link rel="stylesheet" href="../../plugins/summernote/summernote-bs4.min.css">
 </head>
 <body class="hold-transition sidebar-mini">
+<?php
+if($_SESSION["email"]) {
+?>
 <div class="wrapper">
   
 
@@ -403,5 +409,8 @@
     $('#compose-textarea').summernote()
   })
 </script>
+<?php
+}else echo "<h1>Please login first .</h1>";
+?>
 </body>
 </html>

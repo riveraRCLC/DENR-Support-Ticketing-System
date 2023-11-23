@@ -1,3 +1,6 @@
+<?php
+  session_start();
+?>
   <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,6 +18,9 @@
   <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
 </head>
 <body class="hold-transition sidebar-mini">
+<?php
+if($_SESSION["email"]) {
+?>
 <div class="wrapper">
   
 
@@ -531,6 +537,9 @@
 </script>
 
 
-
+<!-- ELSE STATEMENT IF DOES NOT LOG IN -->
+<?php
+}else echo "<h1>Please login first .</h1>";
+?>
 </body>
 </html>
