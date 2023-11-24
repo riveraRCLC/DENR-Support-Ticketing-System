@@ -22,7 +22,7 @@ session_start();
   <div class="register-logo">
     <a href="/DENR-Support-Ticketing-System/index.php"><b>TICKETING </b>SYSTEM</a>
   </div>
-  <?php include('message.php'); ?>
+  
   <div class="card">
     <div class="card-body register-card-body">
       <p class="login-box-msg">Register a new membership</p>
@@ -31,7 +31,7 @@ session_start();
 
           
           <!-- <form action="code-register.php" method="POST" onsubmit="return validateForm()">    -->
-          <form action="includes/signup.inc.php" method="POST" >
+          <form action="includes/signup.inc.php" method="POST" onsubmit="return validateForm()">
         <div class="input-group mb-3">
             <input type="email" name="email" class="form-control" placeholder="Email">
             <div class="input-group-append">
