@@ -93,7 +93,7 @@ session_start();
             </div>
             <!-- /.col -->
             <div class="col-4">
-                <button type="submit" name="register_acct" class="btn btn-primary btn-block" onclick="validateForm()">Register</button>
+                <button type="submit" name="register_acct" class="btn btn-primary btn-block" >Register</button>
             </div>
             <!-- /.col -->
         </div>
