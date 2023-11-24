@@ -137,6 +137,10 @@ function loginUser($conn, $email, $password){
             if($passwordCheck){
                 $_SESSION["id"] = $rowUser['userid'];
                 $_SESSION["email"] = $rowUser['uemail'];
+                $_SESSION["username"] = ucfirst(substr($rowUser['ufname'], 0, 1)) . ucfirst(substr($rowUser['ulname'], 0, 1)); // First letter of ufname and ulname
+                $_SESSION["ufname"] = $rowUser['ufname'];
+                $_SESSION["umname"] = $rowUser['umname'];
+                $_SESSION["ulname"] = $rowUser['ulname'];
                 header("Location: /DENR-Support-Ticketing-System/pages/Dashboard/dashboard.php");
                 exit();
             } else {
