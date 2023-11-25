@@ -3,7 +3,7 @@
 $serverName = "localhost";
 $dBUserName = "root";
 $dBPassword = "";
-$dBName = "supticketdb";
+$dBName = "denrticket1";
 
 $conn = mysqli_connect($serverName,$dBUserName,$dBPassword,$dBName);
 
