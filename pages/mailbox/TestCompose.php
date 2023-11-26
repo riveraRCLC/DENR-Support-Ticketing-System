@@ -29,10 +29,10 @@ if($_SESSION["email"]) {
     <!-- Brand Logo -->
     <a href="../../index3.html" class="brand-link">
       <img src="../../dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-      <span class="brand-text font-weight-light">AdminLTE 3</span>
+      <span class="brand-text font-weight-light">Ticketing System</span>
     </a>
 
-    <!-- Sidebar -->
+     <!-- Sidebar -->
     <div class="sidebar">
       <!-- Sidebar user (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
@@ -40,8 +40,12 @@ if($_SESSION["email"]) {
           <img src="../../dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">Alexander Pierce</a>
+        <a href="#" class="d-block">Welcome</a> 
+        <a href="#" class="d-block"><?php echo $_SESSION["ufname"] . ' ' . $_SESSION["ulname"]; ?></a>
+
+          
         </div>
+     
       </div>
 
       
@@ -369,36 +373,37 @@ if($_SESSION["email"]) {
            
 
         function addTicket() {
-    var tsub2 = $('#subject_input').val();
-    var tuserid2 = $('#to_input').val();
-    var ttowhomid2 = $('#to_input').val(); // This seems to be the same as tuserid2 in your code
-    var tbody2 = $('#compose_textarea').val();
+          var conSub = $('#subject_input').val();
+          var conSenderID = <?php echo $_SESSION["id"]; ?>;
+          var conReceiverID = $('#to_input').val();
+          var conbody = $('#compose_textarea').val();
 
-    $.ajax({
-        type: 'post',
-        data: {
-            tsub: tsub2,
-            tuserid: tuserid2,
-            ttowhomid: ttowhomid2,
-            tbody: tbody2,
-        },
-        url: "/DENR-Support-Ticketing-System/pages/mailbox/includes/addTicket.inc.php",
-        success: function (data) {
-            var response = JSON.parse(data);
-            if (response.success) {
-                // Ticket added successfully, you can clear the form or show a success message
-                alert(response.message);
-            } else {
-                // Ticket submission failed, show an error message
-                alert('Error: ' + response.message);
-            }
-        },
-        error: function (xhr, status, error) {
-            // Handle AJAX request errors
-            alert('AJAX Error: ' + error);
-        }
-    });
-}
+          $.ajax({
+                  type: 'post',
+                  data: {
+                      conSub: conSub,
+                      conSenderID: conSenderID,
+                      conReceiverID: conReceiverID,
+                      conbody: conbody,
+                  },
+                  url: "/DENR-Support-Ticketing-System/pages/mailbox/includes/addConversation.inc.php",
+                  success: function (data) {
+                      var response = JSON.parse(data);
+                      if (response.success) {
+                          // Conversation added successfully, you can clear the form or show a success message
+                          alert(response.message);
+                      } else {
+                          // Conversation submission failed, show an error message
+                          alert('Error: ' + response.message);
+                      }
+                  },
+                  error: function (xhr, status, error) {
+                      // Handle AJAX request errors
+                      alert('AJAX Error: ' + error);
+                  }
+              });
+          }
+
 
 
 
