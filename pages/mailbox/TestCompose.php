@@ -368,7 +368,7 @@ if($_SESSION["email"]) {
 <!-- Page specific script -->
 <script>
    $(document).ready(function () {
-              InboxList();
+          //    InboxList();
               });
            
 
@@ -386,7 +386,7 @@ if($_SESSION["email"]) {
                       conReceiverID: conReceiverID,
                       conbody: conbody,
                   },
-                  url: "/DENR-Support-Ticketing-System/pages/mailbox/includes/addConversation.inc.php",
+                  url: "/DENR-Support-Ticketing-System/pages/mailbox/includes/addTicket.inc.php",
                   success: function (data) {
                     console.log(data);
                       var response = JSON.parse(data);
