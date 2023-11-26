@@ -404,7 +404,11 @@ if($_SESSION["email"]) {
                   }
               });
           }
+          
+          function addTicketDB(){
 
+            
+          }
 
 
   $(function () {
