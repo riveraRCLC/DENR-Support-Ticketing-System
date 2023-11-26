@@ -388,6 +388,7 @@ if($_SESSION["email"]) {
                   },
                   url: "/DENR-Support-Ticketing-System/pages/mailbox/includes/addConversation.inc.php",
                   success: function (data) {
+                    console.log(data);
                       var response = JSON.parse(data);
                       if (response.success) {
                           // Conversation added successfully, you can clear the form or show a success message
@@ -403,9 +404,6 @@ if($_SESSION["email"]) {
                   }
               });
           }
-
-
-
 
 
 
