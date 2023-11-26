@@ -368,7 +368,7 @@ if($_SESSION["email"]) {
 <!-- Page specific script -->
 <script>
    $(document).ready(function () {
-          //    InboxList();
+ 
               });
            
 

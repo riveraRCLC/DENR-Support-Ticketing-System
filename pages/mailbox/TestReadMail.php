@@ -282,10 +282,18 @@ if($_SESSION["email"]) {
                 </ul>
               </div>
               <!-- /.card-body -->
+           
+           
             </div>
             <!-- /.card -->
+          
+          
           </div>
           <!-- /.col -->
+
+        <!-- ------------------------------------------------------------------------------------------------------------------------->
+        
+        <!-- to add accordion here id="accordion"-->
         <div class="col-md-9">
           <div class="card card-primary card-outline">
             <div class="card-header">
@@ -345,13 +353,21 @@ if($_SESSION["email"]) {
           </div>
           <!-- /.card -->
         </div>
+
+        
+
+        <!-- ------------------------------------------------------------------------------------------------------------------------->
+
         <!-- /.col -->
       </div>
       <!-- /.row -->
       </div><!-- /.container-fluid -->
+
     </section>
     <!-- /.content -->
   </div>
+    
+
   <!-- /.content-wrapper -->
   <footer class="main-footer">
     <div class="float-right d-none d-sm-block">
@@ -395,6 +411,75 @@ $(document).ready(function () {
     $('#TestSubb').html(tempSub);
     $('#letterBody').html(tempBody);
 });
+
+    function addTicket() {
+
+              // to change variables here i mean the #subject and so on
+              var conSub = $('#subject_input').val();
+              var conSenderID = <?php echo $_SESSION["id"]; ?>;
+              var conReceiverID = $('#to_input').val();
+              var conbody = $('#compose_textarea').val();
+
+              $.ajax({
+                      type: 'post',
+                      data: {
+                          conSub: conSub,
+                          conSenderID: conSenderID,
+                          conReceiverID: conReceiverID,
+                          conbody: conbody,
+                      },
+                      url: "/DENR-Support-Ticketing-System/pages/mailbox/includes/addTicket.inc.php",
+                      success: function (data) {
+                        console.log(data);
+                          var response = JSON.parse(data);
+                          if (response.success) {
+                              // Conversation added successfully, you can clear the form or show a success message
+                              alert(response.message);
+                          } else {
+                              // Conversation submission failed, show an error message
+                              alert('Error: ' + response.message);
+                          }
+                      },
+                      error: function (xhr, status, error) {
+                          // Handle AJAX request errors
+                          alert('AJAX Error: ' + error);
+                      }
+                  });
+              }
+              function InboxList() {
+            $.ajax({
+                type: 'get',
+                url: "/DENR-Support-Ticketing-System/pages/mailbox/includes/inbox-list.inc.php",
+                success: function (data) {
+                    var response = JSON.parse(data);
+                    console.log(response);
+                    var tr = '';
+                    for (var i = 0; i < response.length; i++) {
+                        var convoid = response[i].convoid;
+                        var ticketnum = response[i].ticketnum;
+                        var senderFirstName = response[i].ufname;
+                        var senderLastName = response[i].ulname;
+                        var subject = response[i].conSub;
+                        var body = response[i].conbody;
+                        var date = response[i].condate;
+                        // to change all the variables and the construction of the HTML Write
+                        tr += '<tr>';
+                        tr += '<td>';
+                        tr += '<div class="icheck-primary">';
+                        tr += '<input type="checkbox" value="" id="check' + [i] + '">';
+                        tr += '<label for="check1"></label>';
+                        tr += '</div>';
+                        tr += '</td>';
+                        tr += '<td class="mailbox-star"><a href="#"><i class="fas fa-star text-warning"></i></a></td>';
+                        tr += '<td class="mailbox-name" id="mycheck' + [i] + '"><a href="/DENR-Support-Ticketing-System/pages/mailbox/TestReadMail.php" onclick="passValues(' + [i] + ')" >' + senderFirstName + ' ' + senderLastName + '</a></td>';
+                        tr += '<td class="mailbox-subject" id="mySub' + [i] + '"><b>' + subject + '</b></td> - <td class="mailbox-body" id="myBody' + [i] + '">' + body + '</td>';
+                        tr += '<td class="mailbox-attachment"></td>';
+                        tr += '<td class="mailbox-date" id="myDate' + [i] + '">' + date + '</td>';
+                    }
+                    $('.loading').hide();
+                    $('#inbox_data').html(tr);
+                }
+            });   
 
 </script>
 <?php
