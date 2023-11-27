@@ -357,7 +357,7 @@ if($_SESSION["email"]) {
             <!-- /.card-footer -->
           </div>
           <!-- /.card -->
-          <!--START HERE TO PUT ALL THE AUTOMATED ACCORDIONS-->
+          <!--START HERE TO PUT ALL THE AUTOMATED ACCORDIONS------------------------------------------->
 
           <div class="accordion" id="accordionExample">
           <div class="card">
