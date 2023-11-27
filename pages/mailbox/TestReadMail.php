@@ -475,12 +475,13 @@ document.getElementById("TESTINGidREAD").textContent = tempMerge;
 
 
               $(document).ready(function () {
-                ReadMailList();
+               
                   // Additional content using jQuery
                   var tr = '<span class="mailbox-read-time float-right">'+tempDate+'</span>';
                   $('#TESTINGidREAD').append(tr);
                   $('#TestSubb').html(tempSub);
                   $('#letterBody').html(tempBody);
+                  ReadMailList(tempConvoid, tempTicketNum);
               });
              
               function ReadMailList(tempConvoid, tempTicketNum) {
@@ -494,6 +495,7 @@ document.getElementById("TESTINGidREAD").textContent = tempMerge;
                     success: function (data) {
                         var response = JSON.parse(data);
                         console.log(response);
+                        
                         var tr = '';
                         for (var i = 0; i < response.length; i++) {
                                     var convoid = response[i].convoid;
@@ -505,18 +507,7 @@ document.getElementById("TESTINGidREAD").textContent = tempMerge;
                                     var date = response[i].condate;
 
                                 // to change all the variables and the construction of the HTML Write
-                                tr += '<tr>';
-                                    tr += '<td>';
-                                    tr += '<div class="icheck-primary">';
-                                    tr += '<input type="checkbox" value="" id="check' + [i] + '">';
-                                    tr += '<label for="check1"></label>';
-                                    tr += '</div>';
-                                    tr += '</td>';
-                                    tr += '<td class="mailbox-star"><a href="#"><i class="fas fa-star text-warning"></i></a></td>';
-                                    tr += '<td class="mailbox-name" id="mycheck' + [i] + '"><a href="/DENR-Support-Ticketing-System/pages/mailbox/TestReadMail.php" onclick="passValues(' + [i] + ')" >' + senderFirstName + ' ' + senderLastName + '</a></td>';
-                                    tr += '<td class="mailbox-subject" id="mySub' + [i] + '"><b>' + subject + '</b></td> - <td class="mailbox-body" id="myBody' + [i] + '">' + body + '</td>';
-                                    tr += '<td class="mailbox-attachment"></td>';
-                                    tr += '<td class="mailbox-date" id="myDate' + [i] + '">' + date + '</td>';
+                               
 
 
                                   tr +=   '<div class="accordion" id="accordionExample">';
@@ -575,9 +566,13 @@ document.getElementById("TESTINGidREAD").textContent = tempMerge;
                                   tr +=   '</div>';
 
                                 }
-                                $('.loading').hide();
-                                $('#ReadMail_Data').html(tr);
-                }
+    
+                                $('#ReadMail_Data').append(tr);
+                },
+                error: function (xhr, status, error) {
+                      // Handle AJAX request errors
+                      alert('AJAX Error: ' + error);
+                  }
             });   
           }
 </script>

@@ -1,6 +1,7 @@
 <?php
 session_start();
 include("dbh.inc.php");
+
 $tempConvoid = $_POST['tempConvoid'];
 $tempTicketNum = $_POST['tempTicketNum'];
 
@@ -11,12 +12,24 @@ $sql = "SELECT c.convoid, c.ticketid, c.convonum, c.conSenderID, c.conReceiverID
         FROM conversation c
         JOIN ticket t ON c.ticketid = t.ticketid
         JOIN user u ON c.conSenderID = u.userid
-        WHERE c.ticketid = $tempTicketNum AND c.convoid <> $tempConvoid AND c.conReceiverID = $userId";
+        WHERE c.ticketid = ? AND c.convoid <> ? AND c.conReceiverID = ?";
 
-$result = mysqli_query($conn, $sql);
+$stmt = mysqli_prepare($conn, $sql);
+
+mysqli_stmt_bind_param($stmt, "iii", $tempTicketNum, $tempConvoid, $userId);
+
+mysqli_stmt_execute($stmt);
+
+$result = mysqli_stmt_get_result($stmt);
+
+if (!$result) {
+    die('Error in SQL query: ' . mysqli_error($conn));
+}
+
 $data = [];
 while ($fetch = mysqli_fetch_assoc($result)) {
     $data[] = $fetch;
 }
+
 print_r(json_encode($data));
 ?>
