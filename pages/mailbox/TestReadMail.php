@@ -360,66 +360,6 @@ if($_SESSION["email"]) {
 
 <!--START HERE TO PUT ALL THE AUTOMATED ACCORDIONS-----------------------------------------------------------------089089089089089080890-->
 
-            <div class="accordion" id="accordionExample">
-          <div class="card">
-              <div class="card-header" id="headingOne">
-                  <h5 class="mb-0">
-                      <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                          Chief Executive Officer
-                      </button>
-                  </h5>
-              </div>
-
-              <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
-                  <div class="card card-primary card-outline">
-                      <div class="card-header">
-                          <h3 class="card-title">Read Mail</h3>
-
-                          <div class="card-tools">
-                              <a href="#" class="btn btn-tool" title="Previous"><i class="fas fa-chevron-left"></i></a>
-                              <a href="#" class="btn btn-tool" title="Next"><i class="fas fa-chevron-right"></i></a>
-                          </div>
-                      </div>
-
-                      <!-- /.card-header -->
-                      <div class="card-body p-0">
-                          <!-- Your content goes here -->
-                          <div class="mailbox-read-info">
-                              <h5 id="TestSubb">Message Subject Is Placed Here</h5>
-                              <h6 id="TESTINGidREAD"></h6>
-                          </div>
-                          <!-- /.mailbox-read-info -->
-                          <div class="mailbox-controls with-border text-center">
-                              <!-- Your controls go here -->
-                          </div>
-                          <!-- /.mailbox-controls -->
-                          <div class="mailbox-read-message" id="letterBody">
-                              <!-- /.MESSAGE BODY POPULATE STARTS HEREEEE!!!! -->
-                          </div>
-                          <!-- /.mailbox-read-message -->
-                      </div>
-                      <!-- /.card-body -->
-
-                      <!-- /.card-footer -->
-                      <div class="card-footer">
-                          <div class="float-right">
-                              <button type="button" class="btn btn-default"><i class="fas fa-reply"></i> Reply</button>
-                              <button type="button" class="btn btn-default"><i class="fas fa-share"></i> Forward</button>
-                          </div>
-                          <button type="button" class="btn btn-default"><i class="far fa-trash-alt"></i> Delete</button>
-                          <button type="button" class="btn btn-default"><i class="fas fa-print"></i> Print</button>
-                      </div>
-                      <!-- /.card-footer -->
-                  </div>
-              </div>
-          </div>
-      </div>
-
-
-
-
-
-
           <!--LAST DIV-->
         </div>
 
@@ -498,9 +438,79 @@ document.getElementById("TESTINGidREAD").textContent = tempMerge;
                         console.log(response);
                         console.log(tempConvoid);
                         console.log(tempTicketID);
-                        
-                    
-                },
+                        var tr = '';
+                            for (var i = 0; i < response.length; i++) {
+                                        var convoid = response[i].convoid;
+                                        var ticketnum = response[i].ticketnum;
+                                        var senderFirstName = response[i].ufname;
+                                        var senderLastName = response[i].ulname;
+                                        var subject = response[i].conSub;
+                                        var body = response[i].conbody;
+                                        var date = response[i].condate;
+    
+                                    // to change all the variables and the construction of the HTML Write
+                                   
+    
+    
+                                      tr +=   '<div class="accordion" id="accordionExample">';
+                                      tr +=   '<div class="card">';
+                                      tr +=   '<div class="card-header" id="headingOne">';
+                                      tr +=   '<h5 class="mb-0">';
+                                      tr +=   '<button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">';
+                                      tr +=   'Chief Executive Officer';
+                                      tr +=   '</button>';
+                                      tr +=   '</h5>';
+                                      tr +=   '</div>';
+    
+                                      tr +=   '<div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">';
+                                      tr +=   '<div class="card card-primary card-outline">';
+                                      tr +=   '<div class="card-header">';
+                                      tr +=   '<h3 class="card-title">Read Mail</h3>';
+    
+                                      tr +=   '<div class="card-tools">';
+                                      tr +=   '<a href="#" class="btn btn-tool" title="Previous"><i class="fas fa-chevron-left"></i></a>';
+                                      tr +=   '<a href="#" class="btn btn-tool" title="Next"><i class="fas fa-chevron-right"></i></a>';
+                                      tr +=   '</div>';
+                                      tr +=   '</div>';
+    
+                                                     // <!-- /.card-header -->
+                                      tr +=   '<div class="card-body p-0">';
+                                                        //  <!-- Your content goes here -->
+                                      tr +=   '<div class="mailbox-read-info">';
+                                      tr +=   '<h5 id="TestSubb">Message Subject Is Placed Here</h5>';
+                                      tr +=   '<h6 id="TESTINGidREAD"></h6>';
+                                      tr +=   '</div>';
+                                                          //    <!-- /.mailbox-read-info -->
+                                      tr +=   '<div class="mailbox-controls with-border text-center">';
+                                                          //    <!-- Your controls go here -->
+                                      tr +=   '</div>';
+                                                         // <!-- /.mailbox-controls -->
+                                      tr +=   '<div class="mailbox-read-message" id="letterBody">';
+                                                           //   <!-- /.MESSAGE BODY POPULATE STARTS HEREEEE!!!! -->
+                                      tr +=   '</div>';
+                                                          //   <!-- /.mailbox-read-message -->
+                                      tr +=   '</div>';
+                                                          //     <!-- /.card-body -->
+    
+                                                          // <!-- /.card-footer -->
+                                      tr +=   '<div class="card-footer">';
+                                      tr +=   '<div class="float-right">';
+                                      tr +=   '<button type="button" class="btn btn-default"><i class="fas fa-reply"></i> Reply</button>';
+                                      tr +=   '<button type="button" class="btn btn-default"><i class="fas fa-share"></i> Forward</button>';
+                                      tr +=   '</div>';
+                                      tr +=   '<button type="button" class="btn btn-default"><i class="far fa-trash-alt"></i> Delete</button>';
+                                      tr +=   '<button type="button" class="btn btn-default"><i class="fas fa-print"></i> Print</button>';
+                                      tr +=   '</div>';
+                                                          // <!-- /.card-footer -->
+                                      tr +=   '</div>';
+                                      tr +=   '</div>';
+                                      tr +=   '</div>';
+                                      tr +=   '</div>';
+    
+                                    }
+        
+                                    $('#ReadMail_Data').append(tr);
+                    },
                 error: function (xhr, status, error) {
                       // Handle AJAX request errors
                       alert('AJAX Error: ' + error);
