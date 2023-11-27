@@ -426,7 +426,7 @@ document.getElementById("TESTINGidREAD").textContent = tempMerge;
               });
               function ReplyAccordion() {
                       var tr = '';
-                      tr += '<div class="card-body">';
+                      tr += '<div class="card-body id="ReplyAccordionID"">';
                       tr += '<div class="form-group">';
                       tr += '<input type="email" id="to_input" class="form-control" placeholder="To:">';
                       tr += '</div>';
@@ -434,7 +434,7 @@ document.getElementById("TESTINGidREAD").textContent = tempMerge;
                       tr += '<input type="text" id="subject_input" class="form-control" placeholder="Subject:">';
                       tr += '</div>';
                       tr += '<div class="form-group">';
-                      tr += '<textarea id="compose_textarea" class="form-control" style="height: 300px"></textarea>';
+                      tr += '<textarea id="compose_textarea" class="form-control" style="height: 150px"></textarea>';
                       tr += '</div>';
                       tr += '<div class="form-group">';
                       tr += '<div class="btn btn-default btn-file">';
@@ -448,7 +448,7 @@ document.getElementById("TESTINGidREAD").textContent = tempMerge;
                       tr += '<div class="card-footer">';
                       tr += '<div class="float-right">';
                       tr += '<button type="button" class="btn btn-default"><i class="fas fa-pencil-alt"></i> Draft</button>';
-                      tr += '<button type="submit" class="btn btn-primary" onclick="addTicket()"><i class="far fa-envelope"></i> Send</button>';
+                      tr += '<button type="submit" class="btn btn-primary" onclick="SendConversation()"><i class="far fa-envelope"></i> Send</button>';
                       tr += '</div>';
                       tr += '<button type="reset" class="btn btn-default"><i class="fas fa-times"></i> Discard</button>';
                       tr += '</div>';  // This div closes the card-footer
@@ -557,14 +557,13 @@ document.getElementById("TESTINGidREAD").textContent = tempMerge;
             });   
           }
 
-          function replyConversation() {
+          function SendConversation() {
           var conSub = $('#subject_input').val();
           var conSenderID = <?php echo $_SESSION["id"]; ?>;
           var conReceiverID = $('#to_input').val();
           var conbody = $('#compose_textarea').val();
           
-          var replyButton = document.getElementById('replyButton');
-          replyButton.disabled = false;
+          $('#ReplyAccordionID').hide();
           $.ajax({
                   type: 'post',
                   data: {
