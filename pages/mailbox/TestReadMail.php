@@ -357,12 +357,71 @@ if($_SESSION["email"]) {
             <!-- /.card-footer -->
           </div>
           <!-- /.card -->
+          <!--START HERE TO PUT ALL THE AUTOMATED ACCORDIONS-->
+
+          <div class="accordion" id="accordionExample">
+          <div class="card">
+              <div class="card-header" id="headingOne">
+                  <h5 class="mb-0">
+                      <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                          Chief Executive Officer
+                      </button>
+                  </h5>
+              </div>
+
+              <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                  <div class="card card-primary card-outline">
+                      <div class="card-header">
+                          <h3 class="card-title">Read Mail</h3>
+
+                          <div class="card-tools">
+                              <a href="#" class="btn btn-tool" title="Previous"><i class="fas fa-chevron-left"></i></a>
+                              <a href="#" class="btn btn-tool" title="Next"><i class="fas fa-chevron-right"></i></a>
+                          </div>
+                      </div>
+
+                      <!-- /.card-header -->
+                      <div class="card-body p-0">
+                          <!-- Your content goes here -->
+                          <div class="mailbox-read-info">
+                              <h5 id="TestSubb">Message Subject Is Placed Here</h5>
+                              <h6 id="TESTINGidREAD"></h6>
+                          </div>
+                          <!-- /.mailbox-read-info -->
+                          <div class="mailbox-controls with-border text-center">
+                              <!-- Your controls go here -->
+                          </div>
+                          <!-- /.mailbox-controls -->
+                          <div class="mailbox-read-message" id="letterBody">
+                              <!-- /.MESSAGE BODY POPULATE STARTS HEREEEE!!!! -->
+                          </div>
+                          <!-- /.mailbox-read-message -->
+                      </div>
+                      <!-- /.card-body -->
+
+                      <!-- /.card-footer -->
+                      <div class="card-footer">
+                          <div class="float-right">
+                              <button type="button" class="btn btn-default"><i class="fas fa-reply"></i> Reply</button>
+                              <button type="button" class="btn btn-default"><i class="fas fa-share"></i> Forward</button>
+                          </div>
+                          <button type="button" class="btn btn-default"><i class="far fa-trash-alt"></i> Delete</button>
+                          <button type="button" class="btn btn-default"><i class="fas fa-print"></i> Print</button>
+                      </div>
+                      <!-- /.card-footer -->
+                  </div>
+              </div>
+          </div>
+      </div>
+
+
+
         </div>
 
         
 
         <!-- ------------------------------------------------------------------------------------------------------------------------->
-
+         
         <!-- /.col -->
       </div>
       <!-- /.row -->
@@ -485,7 +544,7 @@ $(document).ready(function () {
                     $('#inbox_data').html(tr);
                 }
             });   
-}
+          }
 </script>
 <?php
 }else echo "<h1>Please login first .</h1>";
