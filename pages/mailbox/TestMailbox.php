@@ -449,13 +449,13 @@ if($_SESSION["id"]) {
   var getBody = document.getElementById("myBody" + rowSelected).innerText;
   var getDate = document.getElementById("myDate" + rowSelected).innerText;
   var getConvoid = document.getElementById("myConvoid" + rowSelected).innerText;
-  var getTicketNum = document.getElementById("myTicketID" + rowSelected).innerText;
+  var getTicketID = document.getElementById("myTicketID" + rowSelected).innerText;
   localStorage.setItem("getSenderUserID", getSenderUserID);
   localStorage.setItem("getSub", getSub);
   localStorage.setItem("getBody", getBody);
   localStorage.setItem("getDate", getDate);
   localStorage.setItem("getConvoid", getConvoid);
-  localStorage.setItem("getTicketNum", getTicketNum);
+  localStorage.setItem("getTicketID", getTicketID);
 
 
 }
@@ -476,6 +476,7 @@ if($_SESSION["id"]) {
                     for (var i = 0; i < response.length; i++) {
                         var convoid = response[i].convoid;
                         var ticketnum = response[i].ticketnum;
+                        var ticketid = response[i].ticketid;
                         var senderFirstName = response[i].ufname;
                         var senderLastName = response[i].ulname;
                         var subject = response[i].conSub;
@@ -489,7 +490,7 @@ if($_SESSION["id"]) {
                         tr += '<label for="check1"></label>';
                         tr += '</div>';
                         tr += '</td>';
-                        tr += '<td class="mailbox-star"><a href="#"><i class="fas fa-star text-warning"></i></a><a href="#" id="myConvoid' + [i] + '">' + convoid + '</a><a href="#" id="myTicketID' + [i] + '">' + ticketnum + '</a></td>';
+                        tr += '<td class="mailbox-star"><a href="#"><i class="fas fa-star text-warning"></i></a><a href="#" id="myConvoid' + [i] + '">' + convoid + '</a><a href="#" id="myTicketID' + [i] + '">' + ticketid + '</a></td>';
                         tr += '<td class="mailbox-name" id="mycheck' + [i] + '"><a href="/DENR-Support-Ticketing-System/pages/mailbox/TestReadMail.php" onclick="passValues(' + [i] + ')" >' + senderFirstName + ' ' + senderLastName + '</a></td>';
                         tr += '<td class="mailbox-subject" id="mySub' + [i] + '"><b>' + subject + '</b></td> - <td class="mailbox-body" id="myBody' + [i] + '">' + body + '</td>';
                         tr += '<td class="mailbox-attachment"></td>';

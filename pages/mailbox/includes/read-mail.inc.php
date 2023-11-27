@@ -3,7 +3,7 @@ session_start();
 include("dbh.inc.php");
 
 $tempConvoid = $_POST['tempConvoid'];
-$tempTicketNum = $_POST['tempTicketNum'];
+$tempTicketID = $_POST['tempTicketID'];
 
 // Assuming $_SESSION["id"] is the current user's ID
 $userId = $_SESSION["id"];
@@ -16,7 +16,7 @@ $sql = "SELECT c.convoid, c.ticketid, c.convonum, c.conSenderID, c.conReceiverID
 
 $stmt = mysqli_prepare($conn, $sql);
 
-mysqli_stmt_bind_param($stmt, "iii", $tempTicketNum, $tempConvoid, $userId);
+mysqli_stmt_bind_param($stmt, "iii", $tempTicketID, $tempConvoid, $userId);
 
 mysqli_stmt_execute($stmt);
 
