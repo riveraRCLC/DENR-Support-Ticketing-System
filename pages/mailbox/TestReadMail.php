@@ -298,6 +298,7 @@ if($_SESSION["email"]) {
         <!-- ------------------------------------------------------------------------------------------------------------------------->
         
         <!-- to add accordion here id="accordion"-->
+        
         <div class="col-md-9">
           <div class="card card-primary card-outline">
             <div class="card-header">
@@ -484,7 +485,7 @@ $(document).ready(function () {
                     $('#inbox_data').html(tr);
                 }
             });   
-
+}
 </script>
 <?php
 }else echo "<h1>Please login first .</h1>";
