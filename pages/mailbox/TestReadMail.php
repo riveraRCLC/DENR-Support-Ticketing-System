@@ -520,6 +520,39 @@ document.getElementById("TESTINGidREAD").textContent = tempMerge;
                   }
             });   
           }
+
+          function addTicket() {
+          var conSub = $('#subject_input').val();
+          var conSenderID = <?php echo $_SESSION["id"]; ?>;
+          var conReceiverID = $('#to_input').val();
+          var conbody = $('#compose_textarea').val();
+
+          $.ajax({
+                  type: 'post',
+                  data: {
+                      conSub: conSub,
+                      conSenderID: conSenderID,
+                      conReceiverID: conReceiverID,
+                      conbody: conbody,
+                  },
+                  url: "/DENR-Support-Ticketing-System/pages/mailbox/includes/addTicket.inc.php",
+                  success: function (data) {
+                    console.log(data);
+                      var response = JSON.parse(data);
+                      if (response.success) {
+                          // Conversation added successfully, you can clear the form or show a success message
+                          alert(response.message);
+                      } else {
+                          // Conversation submission failed, show an error message
+                          alert('Error: ' + response.message);
+                      }
+                  },
+                  error: function (xhr, status, error) {
+                      // Handle AJAX request errors
+                      alert('AJAX Error: ' + error);
+                  }
+              });
+          }
 </script>
 <?php
 }else echo "<h1>Please login first .</h1>";
