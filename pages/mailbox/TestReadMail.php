@@ -299,7 +299,7 @@ if($_SESSION["email"]) {
         
         <!-- to add accordion here id="accordion"-->
         
-        <div class="col-md-9">
+        <div class="col-md-9" id="ReadMail_Data">
           <div class="card card-primary card-outline">
             <div class="card-header">
               <h3 class="card-title">Read Mail</h3>
@@ -474,49 +474,15 @@ var tempTicketNum = localStorage.getItem("getTicketNum");
 document.getElementById("TESTINGidREAD").textContent = tempMerge;                                                                                              
 
 
-$(document).ready(function () {
-  ReadMailList();
-    // Additional content using jQuery
-    var tr = '<span class="mailbox-read-time float-right">'+tempDate+'</span>';
-    $('#TESTINGidREAD').append(tr);
-    $('#TestSubb').html(tempSub);
-    $('#letterBody').html(tempBody);
-});
-
-    function addTicket() {
-
-              // to change variables here i mean the #subject and so on
-              var conSub = $('#subject_input').val();
-              var conSenderID = <?php echo $_SESSION["id"]; ?>;
-              var conReceiverID = $('#to_input').val();
-              var conbody = $('#compose_textarea').val();
-
-              $.ajax({
-                      type: 'post',
-                      data: {
-                          conSub: conSub,
-                          conSenderID: conSenderID,
-                          conReceiverID: conReceiverID,
-                          conbody: conbody,
-                      },
-                      url: "/DENR-Support-Ticketing-System/pages/mailbox/includes/addTicket.inc.php",
-                      success: function (data) {
-                        console.log(data);
-                          var response = JSON.parse(data);
-                          if (response.success) {
-                              // Conversation added successfully, you can clear the form or show a success message
-                              alert(response.message);
-                          } else {
-                              // Conversation submission failed, show an error message
-                              alert('Error: ' + response.message);
-                          }
-                      },
-                      error: function (xhr, status, error) {
-                          // Handle AJAX request errors
-                          alert('AJAX Error: ' + error);
-                      }
-                  });
-              }
+              $(document).ready(function () {
+                ReadMailList();
+                  // Additional content using jQuery
+                  var tr = '<span class="mailbox-read-time float-right">'+tempDate+'</span>';
+                  $('#TESTINGidREAD').append(tr);
+                  $('#TestSubb').html(tempSub);
+                  $('#letterBody').html(tempBody);
+              });
+             
               function ReadMailList(tempConvoid, tempTicketNum) {
                 $.ajax({
                     type: 'post', // Change to 'post' if you want to use POST method
@@ -537,8 +503,9 @@ $(document).ready(function () {
                                     var subject = response[i].conSub;
                                     var body = response[i].conbody;
                                     var date = response[i].condate;
-                                    // to change all the variables and the construction of the HTML Write
-                                    tr += '<tr>';
+
+                                // to change all the variables and the construction of the HTML Write
+                                tr += '<tr>';
                                     tr += '<td>';
                                     tr += '<div class="icheck-primary">';
                                     tr += '<input type="checkbox" value="" id="check' + [i] + '">';
@@ -550,9 +517,66 @@ $(document).ready(function () {
                                     tr += '<td class="mailbox-subject" id="mySub' + [i] + '"><b>' + subject + '</b></td> - <td class="mailbox-body" id="myBody' + [i] + '">' + body + '</td>';
                                     tr += '<td class="mailbox-attachment"></td>';
                                     tr += '<td class="mailbox-date" id="myDate' + [i] + '">' + date + '</td>';
+
+
+                                  tr +=   '<div class="accordion" id="accordionExample">';
+                                  tr +=   '<div class="card">';
+                                  tr +=   '<div class="card-header" id="headingOne">';
+                                  tr +=   '<h5 class="mb-0">';
+                                  tr +=   '<button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">';
+                                  tr +=   'Chief Executive Officer';
+                                  tr +=   '</button>';
+                                  tr +=   '</h5>';
+                                  tr +=   '</div>';
+
+                                  tr +=   '<div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">';
+                                  tr +=   '<div class="card card-primary card-outline">';
+                                  tr +=   '<div class="card-header">';
+                                  tr +=   '<h3 class="card-title">Read Mail</h3>';
+
+                                  tr +=   '<div class="card-tools">';
+                                  tr +=   '<a href="#" class="btn btn-tool" title="Previous"><i class="fas fa-chevron-left"></i></a>';
+                                  tr +=   '<a href="#" class="btn btn-tool" title="Next"><i class="fas fa-chevron-right"></i></a>';
+                                  tr +=   '</div>';
+                                  tr +=   '</div>';
+
+                                                 // <!-- /.card-header -->
+                                  tr +=   '<div class="card-body p-0">';
+                                                    //  <!-- Your content goes here -->
+                                  tr +=   '<div class="mailbox-read-info">';
+                                  tr +=   '<h5 id="TestSubb">Message Subject Is Placed Here</h5>';
+                                  tr +=   '<h6 id="TESTINGidREAD"></h6>';
+                                  tr +=   '</div>';
+                                                      //    <!-- /.mailbox-read-info -->
+                                  tr +=   '<div class="mailbox-controls with-border text-center">';
+                                                      //    <!-- Your controls go here -->
+                                  tr +=   '</div>';
+                                                     // <!-- /.mailbox-controls -->
+                                  tr +=   '<div class="mailbox-read-message" id="letterBody">';
+                                                       //   <!-- /.MESSAGE BODY POPULATE STARTS HEREEEE!!!! -->
+                                  tr +=   '</div>';
+                                                      //   <!-- /.mailbox-read-message -->
+                                  tr +=   '</div>';
+                                                      //     <!-- /.card-body -->
+
+                                                      // <!-- /.card-footer -->
+                                  tr +=   '<div class="card-footer">';
+                                  tr +=   '<div class="float-right">';
+                                  tr +=   '<button type="button" class="btn btn-default"><i class="fas fa-reply"></i> Reply</button>';
+                                  tr +=   '<button type="button" class="btn btn-default"><i class="fas fa-share"></i> Forward</button>';
+                                  tr +=   '</div>';
+                                  tr +=   '<button type="button" class="btn btn-default"><i class="far fa-trash-alt"></i> Delete</button>';
+                                  tr +=   '<button type="button" class="btn btn-default"><i class="fas fa-print"></i> Print</button>';
+                                  tr +=   '</div>';
+                                                      // <!-- /.card-footer -->
+                                  tr +=   '</div>';
+                                  tr +=   '</div>';
+                                  tr +=   '</div>';
+                                  tr +=   '</div>';
+
                                 }
                                 $('.loading').hide();
-                                $('#inbox_data').html(tr);
+                                $('#ReadMail_Data').html(tr);
                 }
             });   
           }
