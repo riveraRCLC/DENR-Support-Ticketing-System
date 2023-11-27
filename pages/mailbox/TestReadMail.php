@@ -357,9 +357,10 @@ if($_SESSION["email"]) {
             <!-- /.card-footer -->
           </div>
           <!-- /.card -->
-          <!--START HERE TO PUT ALL THE AUTOMATED ACCORDIONS------------------------------------------->
 
-          <div class="accordion" id="accordionExample">
+<!--START HERE TO PUT ALL THE AUTOMATED ACCORDIONS-----------------------------------------------------------------089089089089089080890-->
+
+            <div class="accordion" id="accordionExample">
           <div class="card">
               <div class="card-header" id="headingOne">
                   <h5 class="mb-0">
@@ -369,7 +370,7 @@ if($_SESSION["email"]) {
                   </h5>
               </div>
 
-              <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+              <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
                   <div class="card card-primary card-outline">
                       <div class="card-header">
                           <h3 class="card-title">Read Mail</h3>
@@ -416,6 +417,10 @@ if($_SESSION["email"]) {
 
 
 
+
+
+
+          <!--LAST DIV-->
         </div>
 
         
