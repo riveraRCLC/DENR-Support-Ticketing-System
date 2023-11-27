@@ -1,12 +1,21 @@
 <?php
+ session_start();
+include("dbh.inc.php");
 
-include ("dbh.inc.php" ); 
+// Assuming $_SESSION["id"] is the current user's ID
 
-$sql= "SELECT tbody, tsub, tdate FROM Ticket WHERE tuserid = 'User 2'"; 
-$result = mysqli_query($conn ,  $sql); 
+$userId = $_SESSION["id"];
 
-$data = mysqli_fetch_assoc($result); // Fetch a single row
+$sql = "SELECT c.convoid, c.ticketid, c.convonum, c.conSenderID, c.conReceiverID, c.conSub, c.conbody, c.condate, t.ticketnum, u.ufname, u.ulname
+        FROM conversation c
+        JOIN ticket t ON c.ticketid = t.ticketid
+        JOIN user u ON c.conSenderID = u.userid
+        WHERE c.conReceiverID = $userId";
+
+$result = mysqli_query($conn, $sql);
+$data = [];
+while ($fetch = mysqli_fetch_assoc($result)) {
+    $data[] = $fetch;
+}
 print_r(json_encode($data));
-
-?> 
-
+?>

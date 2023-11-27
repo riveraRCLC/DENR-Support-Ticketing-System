@@ -467,13 +467,15 @@ var tempMerge = "From: " + tempUserID;
 var tempSub = localStorage.getItem("getSub");
 var tempBody = localStorage.getItem("getBody");
 var tempDate = localStorage.getItem("getDate");
-
+var tempConvoid = localStorage.getItem("getConvoid");
+var tempTicketNum = localStorage.getItem("getTicketNum");
 
 // Set the text content using pure JavaScript
 document.getElementById("TESTINGidREAD").textContent = tempMerge;                                                                                              
 
 
 $(document).ready(function () {
+  ReadMailList();
     // Additional content using jQuery
     var tr = '<span class="mailbox-read-time float-right">'+tempDate+'</span>';
     $('#TESTINGidREAD').append(tr);
@@ -515,38 +517,42 @@ $(document).ready(function () {
                       }
                   });
               }
-              function InboxList() {
-            $.ajax({
-                type: 'get',
-                url: "/DENR-Support-Ticketing-System/pages/mailbox/includes/inbox-list.inc.php",
-                success: function (data) {
-                    var response = JSON.parse(data);
-                    console.log(response);
-                    var tr = '';
-                    for (var i = 0; i < response.length; i++) {
-                        var convoid = response[i].convoid;
-                        var ticketnum = response[i].ticketnum;
-                        var senderFirstName = response[i].ufname;
-                        var senderLastName = response[i].ulname;
-                        var subject = response[i].conSub;
-                        var body = response[i].conbody;
-                        var date = response[i].condate;
-                        // to change all the variables and the construction of the HTML Write
-                        tr += '<tr>';
-                        tr += '<td>';
-                        tr += '<div class="icheck-primary">';
-                        tr += '<input type="checkbox" value="" id="check' + [i] + '">';
-                        tr += '<label for="check1"></label>';
-                        tr += '</div>';
-                        tr += '</td>';
-                        tr += '<td class="mailbox-star"><a href="#"><i class="fas fa-star text-warning"></i></a></td>';
-                        tr += '<td class="mailbox-name" id="mycheck' + [i] + '"><a href="/DENR-Support-Ticketing-System/pages/mailbox/TestReadMail.php" onclick="passValues(' + [i] + ')" >' + senderFirstName + ' ' + senderLastName + '</a></td>';
-                        tr += '<td class="mailbox-subject" id="mySub' + [i] + '"><b>' + subject + '</b></td> - <td class="mailbox-body" id="myBody' + [i] + '">' + body + '</td>';
-                        tr += '<td class="mailbox-attachment"></td>';
-                        tr += '<td class="mailbox-date" id="myDate' + [i] + '">' + date + '</td>';
-                    }
-                    $('.loading').hide();
-                    $('#inbox_data').html(tr);
+              function ReadMailList(tempConvoid, tempTicketNum) {
+                $.ajax({
+                    type: 'post', // Change to 'post' if you want to use POST method
+                    data: {
+                        tempConvoid: tempConvoid,
+                        tempTicketNum: tempTicketNum
+                    },
+                    url: "/DENR-Support-Ticketing-System/pages/mailbox/includes/read-mail.inc.php",
+                    success: function (data) {
+                        var response = JSON.parse(data);
+                        console.log(response);
+                        var tr = '';
+                        for (var i = 0; i < response.length; i++) {
+                                    var convoid = response[i].convoid;
+                                    var ticketnum = response[i].ticketnum;
+                                    var senderFirstName = response[i].ufname;
+                                    var senderLastName = response[i].ulname;
+                                    var subject = response[i].conSub;
+                                    var body = response[i].conbody;
+                                    var date = response[i].condate;
+                                    // to change all the variables and the construction of the HTML Write
+                                    tr += '<tr>';
+                                    tr += '<td>';
+                                    tr += '<div class="icheck-primary">';
+                                    tr += '<input type="checkbox" value="" id="check' + [i] + '">';
+                                    tr += '<label for="check1"></label>';
+                                    tr += '</div>';
+                                    tr += '</td>';
+                                    tr += '<td class="mailbox-star"><a href="#"><i class="fas fa-star text-warning"></i></a></td>';
+                                    tr += '<td class="mailbox-name" id="mycheck' + [i] + '"><a href="/DENR-Support-Ticketing-System/pages/mailbox/TestReadMail.php" onclick="passValues(' + [i] + ')" >' + senderFirstName + ' ' + senderLastName + '</a></td>';
+                                    tr += '<td class="mailbox-subject" id="mySub' + [i] + '"><b>' + subject + '</b></td> - <td class="mailbox-body" id="myBody' + [i] + '">' + body + '</td>';
+                                    tr += '<td class="mailbox-attachment"></td>';
+                                    tr += '<td class="mailbox-date" id="myDate' + [i] + '">' + date + '</td>';
+                                }
+                                $('.loading').hide();
+                                $('#inbox_data').html(tr);
                 }
             });   
           }
