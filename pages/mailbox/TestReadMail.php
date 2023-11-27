@@ -18,11 +18,6 @@
   <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
-  <style>
-  #compose-form {
-    display: none;
-  }
-</style>
 </head>
 <body class="hold-transition sidebar-mini">
 <?php
@@ -353,7 +348,7 @@ if($_SESSION["email"]) {
             <!-- /.card-footer -->
             <div class="card-footer">
               <div class="float-right">
-                <button type="button" class="btn btn-default"><i class="fas fa-reply" onclick="ReplyAccordion()"></i> Reply</button>
+                <button type="button" class="btn btn-default" onclick="ReplyAccordion()"><i class="fas fa-reply" ></i> Reply</button>
                 <button type="button" class="btn btn-default"><i class="fas fa-share"></i> Forward</button>
               </div>
               <button type="button" class="btn btn-default"><i class="far fa-trash-alt"></i> Delete</button>
@@ -361,15 +356,11 @@ if($_SESSION["email"]) {
             </div>
             <!-- /.card-footer -->
           </div>
-
-          
           <!-- /.card -->
 
 <!--START HERE TO PUT ALL THE AUTOMATED ACCORDIONS-----------------------------------------------------------------089089089089089080890-->
 
           <!--LAST DIV-->
-
-          
         </div>
 
         
@@ -419,6 +410,7 @@ var tempDate = localStorage.getItem("getDate");
 var tempConvoid = localStorage.getItem("getConvoid");
 var tempTicketID = localStorage.getItem("getTicketID");
 
+
 // Set the text content using pure JavaScript
 document.getElementById("TESTINGidREAD").textContent = tempMerge;                                                                                              
 
@@ -432,14 +424,42 @@ document.getElementById("TESTINGidREAD").textContent = tempMerge;
                   $('#letterBody').html(tempBody);
                   ReadMailList(tempConvoid, tempTicketID);
               });
+              function ReplyAccordion() {
+                      var tr = '';
+                      tr += '<div class="card-body">';
+                      tr += '<div class="form-group">';
+                      tr += '<input type="email" id="to_input" class="form-control" placeholder="To:">';
+                      tr += '</div>';
+                      tr += '<div class="form-group">';
+                      tr += '<input type="text" id="subject_input" class="form-control" placeholder="Subject:">';
+                      tr += '</div>';
+                      tr += '<div class="form-group">';
+                      tr += '<textarea id="compose_textarea" class="form-control" style="height: 300px"></textarea>';
+                      tr += '</div>';
+                      tr += '<div class="form-group">';
+                      tr += '<div class="btn btn-default btn-file">';
+                      tr += '<i class="fas fa-paperclip"></i> Attachment';
+                      tr += '<input type="file" name="attachment">';
+                      tr += '</div>';
+                      tr += '<p class="help-block">Max. 32MB</p>';
+                      tr += '</div>';
+                      tr += '</div>';
+                      tr += '<!-- /.card-body -->';
+                      tr += '<div class="card-footer">';
+                      tr += '<div class="float-right">';
+                      tr += '<button type="button" class="btn btn-default"><i class="fas fa-pencil-alt"></i> Draft</button>';
+                      tr += '<button type="submit" class="btn btn-primary" onclick="addTicket()"><i class="far fa-envelope"></i> Send</button>';
+                      tr += '</div>';
+                      tr += '<button type="reset" class="btn btn-default"><i class="fas fa-times"></i> Discard</button>';
+                      tr += '</div>';  // This div closes the card-footer
+                      tr += '</div>';  // This div closes the card-outline
+                      tr += '</div>';  // This div closes the card
 
+                          $('#ReadMail_Data').append(tr);  // Append the content
 
-              document.getElementById('toggle-form').addEventListener('click', function () {
-                var composeForm = document.getElementById('compose-form');
-                composeForm.style.display = (composeForm.style.display === 'none' || composeForm.style.display === '') ? 'block' : 'none';
-              });
-
-
+                          var replyButton = document.getElementById('replyButton');
+                           replyButton.disabled = true;
+                      }
               function ReadMailList(tempConvoid, tempTicketID) {
                 $.ajax({
                     type: 'post', // Change to 'post' if you want to use POST method
@@ -542,7 +562,9 @@ document.getElementById("TESTINGidREAD").textContent = tempMerge;
           var conSenderID = <?php echo $_SESSION["id"]; ?>;
           var conReceiverID = $('#to_input').val();
           var conbody = $('#compose_textarea').val();
-
+          
+          var replyButton = document.getElementById('replyButton');
+          replyButton.disabled = false;
           $.ajax({
                   type: 'post',
                   data: {
