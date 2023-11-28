@@ -458,7 +458,7 @@ if($_SESSION["id"]) {
   localStorage.setItem("getDate", getDate);
   localStorage.setItem("getConvoid", getConvoid);
   localStorage.setItem("getTicketID", getTicketID);
-  localStorage.setItem("getconSenderID", myconSenderID);
+  localStorage.setItem("getconSenderID", getconSenderID);
 
 
 }
@@ -500,6 +500,7 @@ if($_SESSION["id"]) {
                         tr += '<td class="mailbox-attachment"></td>';
                         tr += '<td class="mailbox-date" id="myDate' + [i] + '">' + date + '</td>';
                     }
+                    console.log(response);
                     $('.loading').hide();
                     $('#inbox_data').html(tr);
                 }

@@ -438,8 +438,11 @@ document.getElementById("TESTINGidREAD").textContent = tempMergeFrom;
                   success: function (data) {
                       var response = JSON.parse(data);
                       console.log(response);
-                      console.log(tempConvoid);
-                      console.log(tempTicketID);
+                      console.log(tempConvoid + " ConvoID");
+                      console.log(tempTicketID+ " TicketID");
+
+                      console.log(tempUserID+ " UserID");
+                      console.log(tempconSenderID+ " ConSenderID");
                       var tr = '';
                           for (var i = 0; i < response.length; i++) {
                                       var convoid = response[i].convoid;
