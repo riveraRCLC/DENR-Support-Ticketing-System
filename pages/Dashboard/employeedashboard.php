@@ -37,7 +37,7 @@ if($_SESSION["email"]) {
     <!-- Left navbar links -->
     <ul class="navbar-nav">
       <li class="nav-item">
-        <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+      <a href="/DENR-Support-Ticketing-System/pages/UserDetails/UserDetails.php" class="d-block"><?php echo $_SESSION["ufname"] . ' ' . $_SESSION["ulname"]; ?></a> 
       </li>
     </ul>
   </nav>

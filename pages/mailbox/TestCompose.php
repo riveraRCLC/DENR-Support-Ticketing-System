@@ -41,7 +41,7 @@ if($_SESSION["email"]) {
         </div>
         <div class="info">
         <a href="#" class="d-block">Welcome</a> 
-        <a href="#" class="d-block"><?php echo $_SESSION["ufname"] . ' ' . $_SESSION["ulname"]; ?></a>
+        <a href="/DENR-Support-Ticketing-System/pages/UserDetails/UserDetails.php" class="d-block"><?php echo $_SESSION["ufname"] . ' ' . $_SESSION["ulname"]; ?></a> 
 
           
         </div>

@@ -250,7 +250,7 @@ if($_SESSION["email"]) {
     <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
-        <!-- SELECT2 EXAMPLE -->
+        <!-- YOUR PROFILE CARD -->
         <div class="card card-default">
           <div class="card-header">
             <h3 class="card-title">Your Profile</h3>
@@ -291,11 +291,11 @@ if($_SESSION["email"]) {
                   <select class="form-control select2" style="width: 100%;">
                     <option selected="selected">Alabama</option>
                     <option>Alaska</option>
-                    <option disabled="disabled">California (disabled)</option>
+                    <option>California </option>
                     <option>Delaware</option>
                     <option>Tennessee</option>
                     <option>Texas</option>
-                    <option>Washington</option>
+                    <option>Not on the List</option>
                   </select>
                 </div>
                 <!-- /.form-group -->
@@ -373,9 +373,18 @@ if($_SESSION["email"]) {
                         <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
                       </div>
                       <div class="form-group">
-                        <label for="exampleInputPassword1">Password</label>
+                        <label for="exampleInputPassword1">Current Password</label>
                         <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
                       </div>
+                      <div class="form-group">
+                        <label for="exampleInputPassword1">New Password</label>
+                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="New Password">
+                      </div>
+                      <div class="form-group">
+                        <label for="exampleInputPassword1">Confirm Password</label>
+                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Confirm Password">
+                      </div>
+                      <button type="submit" class="btn btn-primary">Submit</button>
                       <button class="btn btn-primary" onclick="stepper.next()">Next</button>
                     </div>
                     <div id="information-part" class="content" role="tabpanel" aria-labelledby="information-part-trigger">
