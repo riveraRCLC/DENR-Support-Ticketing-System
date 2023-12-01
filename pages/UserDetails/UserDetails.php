@@ -84,29 +84,7 @@ if($_SESSION["email"]) {
                 </a>
               </li>
     
-              <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="nav-icon fas fa-user"></i>
-                  <p>
-                    Users
-                    <i class="fas fa-angle-left right"></i>
-                  </p>
-                </a>
-                <ul class="nav nav-treeview">
-                  <li class="nav-item">
-                    <a href="#" class="nav-link">
-                      <i class="far fa-circle nav-icon"></i>
-                      <p>Department Head</p>
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="users/workingscholars.html" class="nav-link">
-                      <i class="far fa-circle nav-icon"></i>
-                      <p>Working Scholars</p>
-                    </a>
-                  </li>
-                </ul>
-              </li>
+              
 
               <!-- TESTING LOG IN        ------------------------------------------ -->
               
@@ -250,6 +228,7 @@ if($_SESSION["email"]) {
     <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
+
         <!-- YOUR PROFILE CARD -->
         <div class="card card-default">
           <div class="card-header">
@@ -266,7 +245,8 @@ if($_SESSION["email"]) {
           </div>
           <!-- /.card-header -->
           <div class="card-body">
-            <div class="row">
+          <form action="includes/signup.inc.php" method="POST" onsubmit="return validateForm()">
+          <div class="row">
               <div class="col-md-6">
                 <div class="form-group">
                   <label>First Name</label>
@@ -301,8 +281,46 @@ if($_SESSION["email"]) {
                 <!-- /.form-group -->
               </div>
               <!-- /.col -->
+            
             </div>
             <!-- /.row -->
+
+  
+              
+              <button class="btn btn-primary" onclick="#">Save</button>
+                    
+              <!-- /.col -->
+            
+              <!-- /.col -->
+            </div>
+            <!-- /.row -->
+            </form>
+          </div>
+          <!-- /.card-body -->
+          <div class="card-footer">
+            Visit <a href="https://select2.github.io/">Select2 documentation</a> for more examples and information about
+            the plugin.
+          </div>
+        </div>
+
+        <!-- YOUR PROFILE CARD -->
+        <div class="card card-default">
+          <div class="card-header">
+            <h3 class="card-title">Register Your Company</h3>
+
+            <div class="card-tools">
+              <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                <i class="fas fa-minus"></i>
+              </button>
+              <button type="button" class="btn btn-tool" data-card-widget="remove">
+                <i class="fas fa-times"></i>
+              </button>
+            </div>
+          </div>
+          <!-- /.card-header -->
+          <div class="card-body">
+          <form action="includes/signup.inc.php" method="POST" onsubmit="return validateForm()">
+         
 
             <h5>Company</h5>
             <div class="row">
@@ -331,6 +349,7 @@ if($_SESSION["email"]) {
               <!-- /.col -->
             </div>
             <!-- /.row -->
+            </form>
           </div>
           <!-- /.card-body -->
           <div class="card-footer">
@@ -338,6 +357,9 @@ if($_SESSION["email"]) {
             the plugin.
           </div>
         </div>
+      
+        
+      
         <!-- /.card -->
 
         <!-- /.row -->
