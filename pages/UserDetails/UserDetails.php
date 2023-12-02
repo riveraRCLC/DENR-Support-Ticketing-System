@@ -245,17 +245,18 @@ if($_SESSION["email"]) {
           </div>
           <!-- /.card-header -->
           <div class="card-body">
-          <form action="includes/signup.inc.php" method="POST" onsubmit="return validateForm()">
+          <form action="includes/UserDetails.inc.php" method="POST">
           <div class="row">
               <div class="col-md-6">
                 <div class="form-group">
                   <label>First Name</label>
-                  <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter First Name">
+                                                                          <!-- to add here the Data From database dynamically-->
+                  <input type="text" class="form-control" id="firstName" placeholder="<?php echo $_SESSION["ufname"]; ?>">
                 </div>
                 <!-- /.form-group -->
                 <div class="form-group">
                   <label>Last Name</label>
-                  <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter First Name">
+                  <input type="text" class="form-control" id="middleName" placeholder="<?php echo $_SESSION["umname"]; ?>">
                 </div>
                 <!-- /.form-group -->
               </div>
@@ -263,13 +264,13 @@ if($_SESSION["email"]) {
               <div class="col-md-6">
               <div class="form-group">
                   <label>Middle Name</label>
-                  <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter First Name">
+                  <input type="text" class="form-control" id="lastName" placeholder="<?php echo $_SESSION["ulname"]; ?>">
                 </div>
                 <!-- /.form-group -->
                 <div class="form-group">
                   <label>Company</label>
                   <select class="form-control select2" style="width: 100%;">
-                    <option selected="selected">Alabama</option>
+                    <option  id="company" selected="selected">Alabama</option>
                     <option>Alaska</option>
                     <option>California </option>
                     <option>Delaware</option>
@@ -287,7 +288,7 @@ if($_SESSION["email"]) {
 
   
               
-              <button class="btn btn-primary" onclick="#">Save</button>
+              <button name="save_changes" class="btn btn-primary" onclick="#">Save</button>
                     
               <!-- /.col -->
             
@@ -391,7 +392,7 @@ if($_SESSION["email"]) {
                     <!-- your steps content here -->
                     <div id="logins-part" class="content" role="tabpanel" aria-labelledby="logins-part-trigger">
                       <div class="form-group">
-                        <label for="exampleInputEmail1">Email address</label>
+                        <label ">Email address</label>
                         <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
                       </div>
                       <div class="form-group">
