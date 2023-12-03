@@ -251,12 +251,21 @@ if($_SESSION["email"]) {
                   <label>Last Name</label>
                   <input type="text" class="form-control" name="middleName" id="middleName" placeholder="<?php echo $_SESSION["umname"]; ?>">
                 </div>
-
+                include("includes/dbh.inc.php");
                 <!-- /.form-group -->
                 <?php
                     include("includes/dbh.inc.php");
 
-                    $sql = "SELECT compname FROM company";
+                                        
+                   
+                    $userID = $_SESSION["id"];
+
+                    // Query to get the user's company ID from userdetails
+                    $userCompanyQuery = "SELECT udcompid FROM userdetails WHERE uduserid = $userID";
+                    $userCompanyResult = mysqli_query($conn, $userCompanyQuery);
+                    $userCompany = mysqli_fetch_assoc($userCompanyResult)['udcompid'];
+
+                    $sql = "SELECT compid, compname FROM company";
 
                     $result = mysqli_query($conn, $sql);
                     $data = [];
@@ -270,7 +279,12 @@ if($_SESSION["email"]) {
                             <select class="form-control select2" style="width: 100%;">';
 
                     foreach ($data as $item) {
-                        echo '<option value="' . $item['compname'] . '">' . $item['compname'] . '</option>';
+                        // Check if the company ID matches the user's company ID
+                        if ($item['compid'] == $userCompany) {
+                            echo '<option value="' . $item['compid'] . '" selected="selected">' . $item['compname'] . '</option>';
+                        } else {
+                            echo '<option value="' . $item['compid'] . '">' . $item['compname'] . '</option>';
+                        }
                     }
 
                     echo '</select>
