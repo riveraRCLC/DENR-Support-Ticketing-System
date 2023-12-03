@@ -141,6 +141,7 @@ function loginUser($conn, $email, $password){
                 $_SESSION["ufname"] = $rowUser['ufname'];
                 $_SESSION["umname"] = $rowUser['umname'];
                 $_SESSION["ulname"] = $rowUser['ulname'];
+                $_SESSION["phonenum"] = $rowUser['phonenum'];
                 header("Location: /DENR-Support-Ticketing-System/pages/Dashboard/dashboard.php");
                 exit();
             } else {

@@ -11,12 +11,8 @@ function emptyInputSignup($firstName, $middleName, $lastName, $company){
 }
 
 function addUserDetails($conn, $firstName, $middleName, $lastName, $company){
-    $result;
-    if (empty($firstName) || empty($middleName) || empty($lastName) || empty($company)){
-        $result = true;     
-    }else{
-        $result = false;
-    }
-    return $result;
+    session_start();
+    $userID = $_SESSION["id"];
+    
 }
 

@@ -103,10 +103,7 @@ if($_SESSION["email"]) {
                 </a>
               </li>
               
-              
-                
-    
-    
+                  
               
               <li class="nav-item">
                 <a href="#" class="nav-link">
@@ -137,10 +134,6 @@ if($_SESSION["email"]) {
                   </li>
                 </ul>
               </li>
-
-
-              
-    
 
 
               <li class="nav-item">
@@ -251,26 +244,30 @@ if($_SESSION["email"]) {
                 <div class="form-group">
                   <label>First Name</label>
                                                                           <!-- to add here the Data From database dynamically-->
-                  <input type="text" class="form-control" id="firstName" placeholder="<?php echo $_SESSION["ufname"]; ?>">
+                  <input type="text" class="form-control" name="firstName" id="firstName" placeholder="<?php echo $_SESSION["ufname"]; ?>">
                 </div>
                 <!-- /.form-group -->
                 <div class="form-group">
                   <label>Last Name</label>
-                  <input type="text" class="form-control" id="middleName" placeholder="<?php echo $_SESSION["umname"]; ?>">
+                  <input type="text" class="form-control" name="middleName" id="middleName" placeholder="<?php echo $_SESSION["umname"]; ?>">
                 </div>
                 <!-- /.form-group -->
               </div>
               <!-- /.col -->
               <div class="col-md-6">
               <div class="form-group">
+                  <label>Phone Number</label>
+                  <input type="text" class="form-control" name="phoneNum" id="phoneNum" placeholder="<?php echo $_SESSION["phonenum"]; ?>">
+                </div>
+                <div class="form-group">
                   <label>Middle Name</label>
-                  <input type="text" class="form-control" id="lastName" placeholder="<?php echo $_SESSION["ulname"]; ?>">
+                  <input type="text" class="form-control" name="lastName" id="lastName" placeholder="<?php echo $_SESSION["ulname"]; ?>">
                 </div>
                 <!-- /.form-group -->
                 <div class="form-group">
                   <label>Company</label>
-                  <select class="form-control select2" style="width: 100%;">
-                    <option  id="company" selected="selected">Alabama</option>
+                  <select name="company" id="company" class="form-control select2" style="width: 100%;">
+                    <option  selected="selected">Alabama</option>
                     <option>Alaska</option>
                     <option>California </option>
                     <option>Delaware</option>
@@ -288,7 +285,7 @@ if($_SESSION["email"]) {
 
   
               
-              <button name="save_changes" class="btn btn-primary" onclick="#">Save</button>
+              <button type="submit" name="save_changes" class="btn btn-primary"  >Save</button>
                     
               <!-- /.col -->
             
@@ -343,7 +340,7 @@ if($_SESSION["email"]) {
                 <!-- /.form-group -->
               </div>
               
-              <button class="btn btn-primary" onclick="#">Save</button>
+              <button class="btn btn-primary" >Save</button>
                     
               <!-- /.col -->
             

@@ -11,7 +11,7 @@ if(isset($_POST["save_changes"])){
     require_once 'function.inc.php';
 
 if(emptyInputSignup($firstName, $middleName, $lastName, $company) !== false){
-    header("Location: /DENR-Support-Ticketing-System/pages/register/register.php?error=emptyinput");
+    header("Location: /DENR-Support-Ticketing-System/pages/UserDetails/UserDetails.php?error=emptyinput");
     exit();
 }
 
@@ -19,6 +19,6 @@ addUserDetails($conn, $firstName, $middleName, $lastName, $company);
 
 
 }else{
-    header("Location: /DENR-Support-Ticketing-System/pages/register/forgotpass.php");
+    header("Location: /DENR-Support-Ticketing-System/pages/UserDetails/UserDetails.php?error=UNEXPECTED");
     exit();
 }
