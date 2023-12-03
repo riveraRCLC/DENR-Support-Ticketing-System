@@ -251,12 +251,10 @@ if($_SESSION["email"]) {
                   <label>Last Name</label>
                   <input type="text" class="form-control" name="middleName" id="middleName" placeholder="<?php echo $_SESSION["umname"]; ?>">
                 </div>
-                include("includes/dbh.inc.php");
+              
                 <!-- /.form-group -->
                 <?php
-                    include("includes/dbh.inc.php");
-
-                                        
+                    include("includes/dbh.inc.php");                                        
                    
                     $userID = $_SESSION["id"];
 
