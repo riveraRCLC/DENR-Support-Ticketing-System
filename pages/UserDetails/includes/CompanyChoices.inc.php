@@ -1,8 +1,6 @@
 <?php
- session_start();
-include("dbh.inc.php");
 
-// Assuming $_SESSION["id"] is the current user's ID
+include("dbh.inc.php");
 
 
 $sql = "SELECT compname FROM company";

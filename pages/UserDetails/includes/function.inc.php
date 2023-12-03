@@ -1,14 +1,5 @@
 <?php
 
-function emptyInputSignup($firstName, $middleName, $lastName, $phoneNum, $company){
-    $result;
-    if (empty($firstName) || empty($middleName) || empty($lastName) || empty($phoneNum) || empty($company)){
-        $result = true;     
-    }else{
-        $result = false;
-    }
-    return $result;
-}
 
 function addUserDetails($conn, $firstName, $middleName, $lastName, $phoneNum, $company)
 {

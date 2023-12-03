@@ -255,8 +255,9 @@ if($_SESSION["email"]) {
                 <!-- /.form-group -->
                 <div class="form-group">
                   <label>Company</label>
-                  <select name="companyChoices" id="companyChoices" class="form-control select2" style="width: 100%;">
-                  </select>
+                  <select   class="form-control select2" style="width: 100%;">
+                    <option id="companyChoicesMenu"> </option> 
+                </select>
                 </div>
                 <!-- /.form-group -->
 
@@ -503,10 +504,10 @@ if($_SESSION["email"]) {
                     var tr = '';
                     for (var i = 0; i < response.length; i++) {
                         var compname = response[i].compname;
-                        tr += '<option>' + compname + '</option>';
+                        tr +=  compname ;
                     }
 
-                    $('#companyChoices').html(tr);
+                    $('#companyChoices').append(tr);
                 },
                 error: function (xhr, status, error) {
                     // Handle AJAX request errors
