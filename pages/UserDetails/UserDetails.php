@@ -253,12 +253,29 @@ if($_SESSION["email"]) {
                 </div>
 
                 <!-- /.form-group -->
-                <div class="form-group">
-                  <label>Company</label>
-                  <select   class="form-control select2" style="width: 100%;">
-                    <option id="companyChoicesMenu"> </option> 
-                </select>
-                </div>
+                <?php
+                    include("includes/dbh.inc.php");
+
+                    $sql = "SELECT compname FROM company";
+
+                    $result = mysqli_query($conn, $sql);
+                    $data = [];
+                    while ($fetch = mysqli_fetch_assoc($result)) {
+                        $data[] = $fetch;
+                    }
+
+                    // Echo the select options directly
+                    echo '<div class="form-group">
+                            <label>Company</label>
+                            <select class="form-control select2" style="width: 100%;">';
+
+                    foreach ($data as $item) {
+                        echo '<option value="' . $item['compname'] . '">' . $item['compname'] . '</option>';
+                    }
+
+                    echo '</select>
+                          </div>';
+                    ?>
                 <!-- /.form-group -->
 
               </div>
@@ -323,7 +340,7 @@ if($_SESSION["email"]) {
               <div class="col-12 col-sm-6">
               <div class="form-group">
                   <label>Company Name</label>
-                  <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Company Name">
+                  <input type="text" class="form-control" id="exampleInputEmail122" placeholder="Enter Company Name">
                 </div>
                 <!-- /.form-group -->
               </div>
@@ -332,7 +349,7 @@ if($_SESSION["email"]) {
                 <div class="form-group">
                   <div class="form-group">
                   <label>Company Address</label>
-                  <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Company Address">
+                  <input type="text" class="form-control" id="exampleInputEmail2" placeholder="Enter Company Address">
                 </div>
                 </div>
                 <!-- /.form-group -->
@@ -391,16 +408,16 @@ if($_SESSION["email"]) {
                         <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
                       </div>
                       <div class="form-group">
-                        <label for="exampleInputPassword1">Current Password</label>
-                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                        <label for="exampleInputPassword3">Current Password</label>
+                        <input type="password" class="form-control" id="exampleInputPassword3" placeholder="Password">
                       </div>
                       <div class="form-group">
-                        <label for="exampleInputPassword1">New Password</label>
-                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="New Password">
+                        <label for="exampleInputPassword4">New Password</label>
+                        <input type="password" class="form-control" id="exampleInputPassword4" placeholder="New Password">
                       </div>
                       <div class="form-group">
-                        <label for="exampleInputPassword1">Confirm Password</label>
-                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Confirm Password">
+                        <label for="exampleInputPassword5">Confirm Password</label>
+                        <input type="password" class="form-control" id="exampleInputPassword5" placeholder="Confirm Password">
                       </div>
                       <button type="submit" class="btn btn-primary">Submit</button>
                       <button class="btn btn-primary" onclick="stepper.next()">Next</button>
@@ -487,34 +504,6 @@ if($_SESSION["email"]) {
 
 <!-- Page specific script -->
 <script>
-  
-          $(document).ready(function () {
-            CompanyChoices();
-        });
-
-        function CompanyChoices() {
-            $.ajax({
-                type: 'get',
-                url: "/DENR-Support-Ticketing-System/pages/UserDetails/includes/UserDetails.inc.php",
-                success: function (data) {
-                    // No need to parse JSON, as the response is already expected to be JSON
-                    var response = data;
-                    console.log(response);
-
-                    var tr = '';
-                    for (var i = 0; i < response.length; i++) {
-                        var compname = response[i].compname;
-                        tr +=  compname ;
-                    }
-
-                    $('#companyChoices').append(tr);
-                },
-                error: function (xhr, status, error) {
-                    // Handle AJAX request errors
-                    alert('AJAX Error: ' + error);
-                }
-            });
-        }
 
 
 
