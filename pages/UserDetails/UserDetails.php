@@ -251,18 +251,7 @@ if($_SESSION["email"]) {
                   <label>Last Name</label>
                   <input type="text" class="form-control" name="middleName" id="middleName" placeholder="<?php echo $_SESSION["umname"]; ?>">
                 </div>
-                <!-- /.form-group -->
-              </div>
-              <!-- /.col -->
-              <div class="col-md-6">
-              <div class="form-group">
-                  <label>Phone Number</label>
-                  <input type="text" class="form-control" name="phoneNum" id="phoneNum" placeholder="<?php echo $_SESSION["phonenum"]; ?>">
-                </div>
-                <div class="form-group">
-                  <label>Middle Name</label>
-                  <input type="text" class="form-control" name="lastName" id="lastName" placeholder="<?php echo $_SESSION["ulname"]; ?>">
-                </div>
+
                 <!-- /.form-group -->
                 <div class="form-group">
                   <label>Company</label>
@@ -277,6 +266,20 @@ if($_SESSION["email"]) {
                   </select>
                 </div>
                 <!-- /.form-group -->
+
+              </div>
+              <!-- /.col -->
+              <div class="col-md-6">
+             
+                <div class="form-group">
+                  <label>Middle Name</label>
+                  <input type="text" class="form-control" name="lastName" id="lastName" placeholder="<?php echo $_SESSION["ulname"]; ?>">
+                </div>
+                <div class="form-group">
+                  <label>Phone Number</label>
+                  <input type="text" class="form-control" name="phoneNum" id="phoneNum" placeholder="<?php echo $_SESSION["phonenum"]; ?>">
+                </div>
+                
               </div>
               <!-- /.col -->
             
