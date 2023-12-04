@@ -256,14 +256,9 @@ if($_SESSION["email"]) {
                         <!-- /.form-group -->
                         <div class="form-group">
                           <label>Company</label>
-                          <select class="form-control select2"  style="width: 100%;">
+                          <select id="CompanyChoices" class="form-control select2"  style="width: 100%;">
                             
-                            <option>Alaska</option>
-                            <option>California</option>
-                            <option>Delaware</option>
-                            <option>Tennessee</option>
-                            <option>Texas</option>
-                            <option>Washington</option>
+                        
                           </select>
                         </div>
                         <!-- /.form-group -->
@@ -492,8 +487,31 @@ if($_SESSION["email"]) {
 
 <!-- Page specific script -->
 <script>
+    $(document).ready(function () {
+        CompanyChoices();
+    });
 
+    function CompanyChoices() {
+        $.ajax({
+            type: 'get',
+            url: "/DENR-Support-Ticketing-System/pages/UserDetails/includes/CompanyChoices.inc.php",
+            success: function (data) {
+                // No need to parse JSON, as the response is already expected to be JSON
+                var response = data;
+                console.log(response);
 
+                var options = response.map(function (item) {
+                    return $('<option>', { text: item.compname });
+                });
+
+                $('#companyChoices').html(options);
+            },
+            error: function (xhr, status, error) {
+                // Handle AJAX request errors
+                alert('AJAX Error: ' + error);
+            }
+        });
+    }
 
   $(function () {
     //Initialize Select2 Elements
