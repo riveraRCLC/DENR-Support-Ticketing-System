@@ -238,72 +238,101 @@ if($_SESSION["email"]) {
           </div>
           <!-- /.card-header -->
           <div class="card-body">
-               
-          <form action="includes/UserDetails.inc.php" method="POST">
-                  <div class="row">
-                      <div class="col-md-6">
-                        <div class="form-group">
-                          <label>First Name</label>
-                                                                                  <!-- to add here the Data From database dynamically-->
-                          <input type="text" class="form-control" name="firstName" id="firstName" placeholder="<?php echo $_SESSION["ufname"]; ?>">
-                        </div>
-                        <!-- /.form-group -->
-                        <div class="form-group">
-                          <label>Last Name</label>
-                          <input type="text" class="form-control" name="middleName" id="middleName" placeholder="<?php echo $_SESSION["umname"]; ?>">
-                        </div>
-                      
-                        <!-- /.form-group -->
-                        <div class="form-group">
-                          <label>Company</label>
-                          <select class="form-control select2"  style="width: 100%;">
-                            
-                            <option>Alaska</option>
-                            <option>California</option>
-                            <option>Delaware</option>
-                            <option>Tennessee</option>
-                            <option>Texas</option>
-                            <option>Washington</option>
-                          </select>
-                        </div>
-                        <!-- /.form-group -->
-                              
-                      </div>
-                      <!-- /.col -->
-                      <div class="col-md-6">
-                    
-                        <div class="form-group">
-                          <label>Middle Name</label>
-                          <input type="text" class="form-control" name="lastName" id="lastName" placeholder="<?php echo $_SESSION["ulname"]; ?>">
-                        </div>
-                        <div class="form-group">
-                          <label>Phone Number</label>
-                          <input type="text" class="form-control" name="phoneNum" id="phoneNum" placeholder="<?php echo $_SESSION["phonenum"]; ?>">
-                        </div>
-                        
-                      </div>
-                      <!-- /.col -->
-                    
-                    </div>
-                    <!-- /.row -->
+        <form action="includes/UserDetails.inc.php" method="POST">
+           <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>First Name</label>
+                                                                          <!-- to add here the Data From database dynamically-->
+                  <input type="text" class="form-control" name="firstName" id="firstName" placeholder="<?php echo $_SESSION["ufname"]; ?>">
+                </div>
+                <!-- /.form-group -->
+                <div class="form-group">
+                  <label>Last Name</label>
+                  <input type="text" class="form-control" name="middleName" id="middleName" placeholder="<?php echo $_SESSION["umname"]; ?>">
+                </div>
+              
+                <!-- /.form-group -->
+                <?php
+                    include("includes/dbh.inc.php");                                        
+                   
+                    $userID = $_SESSION["id"];
 
-          
-                      
-                      <button type="submit" name="save_changes" class="btn btn-primary"  >Save</button>
-                            
-                      <!-- /.col -->
+                    try
+                    {
+                          // Query to get the user's company ID from userdetails
+                      $userCompanyQuery = "SELECT udcompid FROM userdetails WHERE uduserid = $userID";
+                      $userCompanyResult = mysqli_query($conn, $userCompanyQuery);
+                      $userCompany = mysqli_fetch_assoc($userCompanyResult)['udcompid'];
+
+                      $sql = "SELECT compid, compname FROM company";
+
+                      $result = mysqli_query($conn, $sql);
+                      $data = [];
+                      while ($fetch = mysqli_fetch_assoc($result)) {
+                          $data[] = $fetch;
+                      }
+                    }
+                    catch (Exception $e) {
+                        
+                    }
+
+                    // Echo the select options directly
+                    echo '<div class="form-group">
+                            <label>Company</label>
+                            <select  class="form-control select2" style="width: 100%; name="company">';
+
+                    foreach ($data as $item) {
+                        // Check if the company ID matches the user's company ID
+                        if ($item['compid'] == $userCompany) {
+                            echo '<option value="' . $item['compid'] . '" selected="selected">' . $item['compname'] . '</option>';
+                        } else {
+                            echo '<option value="' . $item['compid'] . '">' . $item['compname'] . '</option>';
+                        }
+                    }
+
+                    echo '</select>
+                          </div>';
+                    ?>
+                <!-- /.form-group -->
+
+              </div>
+              <!-- /.col -->
+              <div class="col-md-6">
+             
+                <div class="form-group">
+                  <label>Middle Name</label>
+                  <input type="text" class="form-control" name="lastName" id="lastName" placeholder="<?php echo $_SESSION["ulname"]; ?>">
+                </div>
+                <div class="form-group">
+                  <label>Phone Number</label>
+                  <input type="text" class="form-control" name="phoneNum" id="phoneNum" placeholder="<?php echo $_SESSION["phonenum"]; ?>">
+                </div>
+                
+              </div>
+              <!-- /.col -->
+            
+            </div>
+            <!-- /.row -->
+
+  
+              
+              <button type="submit" name="save_changes" class="btn btn-primary"  >Save</button>
                     
-                      <!-- /.col -->
-                    </div>
-                    <!-- /.row -->
-                    
-                  </div>
-                  <!-- /.card-body -->
-                      <div class="card-footer">
-                        Visit <a href="https://select2.github.io/">Select2 documentation</a> for more examples and information about
-                        the plugin.
-                      </div>
-                  </form>
+              <!-- /.col -->
+            
+              <!-- /.col -->
+            </div>
+            <!-- /.row -->
+            
+          </div>
+          <!-- /.card-body -->
+              <div class="card-footer">
+                Visit <a href="https://select2.github.io/">Select2 documentation</a> for more examples and information about
+                the plugin.
+              </div>
+          </form>
+     
 
         <!-- YOUR PROFILE CARD -->
         <div class="card card-default">
@@ -335,11 +364,12 @@ if($_SESSION["email"]) {
               </div>
               <!-- /.col -->
               <div class="col-12 col-sm-6">
+                <div class="form-group">
                   <div class="form-group">
                   <label>Company Address</label>
                   <input type="text" class="form-control" id="exampleInputEmail2" placeholder="Enter Company Address">
-              </div>
-                
+                </div>
+                </div>
                 <!-- /.form-group -->
               </div>
               
