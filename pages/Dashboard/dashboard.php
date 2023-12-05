@@ -288,9 +288,7 @@ if($_SESSION["email"]) {
         <!-- /.row -->
         <!-- Main row -->
 
-        <div class="row">
-          COL 1
-        </div>
+       
 
 
 

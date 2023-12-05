@@ -486,6 +486,7 @@ if($_SESSION["email"]) {
 <script>
     $(document).ready(function () {
     CompanyChoices();
+    UserCompany();
 });
 
 function CompanyChoices() {
@@ -496,12 +497,39 @@ function CompanyChoices() {
             // No need to parse JSON, as the response is already expected to be JSON
             var response = JSON.parse(data);
             console.log(response);
-
+            
             var options = response.map(function (item) {
                 return $('<option>', { text: item.compname });
             });
-
+            
             $('#CompanyChoices').html(options);
+        },
+        error: function (xhr, status, error) {
+            // Handle AJAX request errors
+            alert('AJAX Error: ' + error);
+        }
+    });
+}
+
+function UserCompany() {
+    $.ajax({
+        type: 'get',
+        url: "/DENR-Support-Ticketing-System/pages/UserDetails/includes/CheckCompany.inc.php",
+        success: function (data) {
+            var response = JSON.parse(data);
+            console.log(response);
+
+            if ('compname' in response) {
+                // Create an option with the company name and set it as selected
+                var option = $('<option>', { text: response.compname, selected: 'selected' });
+                $('#CompanyChoices').html(option);
+            } else if ('error' in response) {
+                // Handle the case where an error occurred
+                alert('Error: ' + response.error);
+            } else {
+                // Handle other unexpected cases
+                alert('Unexpected response format');
+            }
         },
         error: function (xhr, status, error) {
             // Handle AJAX request errors
