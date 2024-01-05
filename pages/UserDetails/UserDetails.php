@@ -245,12 +245,12 @@ if($_SESSION["email"]) {
                         <div class="form-group">
                           <label>First Name</label>
                                                                                   <!-- to add here the Data From database dynamically-->
-                          <input type="text" class="form-control" name="firstName" id="firstName" placeholder="<?php echo $_SESSION["ufname"]; ?>">
+                          <input type="text" class="form-control" name="firstName" id="firstName" value="<?php echo $_SESSION["ufname"]; ?>" placeholder="<?php echo $_SESSION["ufname"]; ?>">
                         </div>
                         <!-- /.form-group -->
                         <div class="form-group">
                           <label>Last Name</label>
-                          <input type="text" class="form-control" name="middleName" id="middleName" placeholder="<?php echo $_SESSION["umname"]; ?>">
+                          <input type="text" class="form-control" name="middleName" id="middleName" value="<?php echo $_SESSION["umname"]; ?>" placeholder="<?php echo $_SESSION["umname"]; ?>">
                         </div>
                       
                         <!-- /.form-group -->
@@ -266,11 +266,11 @@ if($_SESSION["email"]) {
                     
                         <div class="form-group">
                           <label>Middle Name</label>
-                          <input type="text" class="form-control" name="lastName" id="lastName" placeholder="<?php echo $_SESSION["ulname"]; ?>">
+                          <input type="text" class="form-control" name="lastName" id="lastName" value="<?php echo $_SESSION["ulname"]; ?>" placeholder="<?php echo $_SESSION["ulname"]; ?>">
                         </div>
                         <div class="form-group">
                           <label>Phone Number</label>
-                          <input type="text" class="form-control" name="phoneNum" id="phoneNum" placeholder="<?php echo $_SESSION["phonenum"]; ?>">
+                          <input type="text" class="form-control" name="phoneNum" id="phoneNum" value="<?php echo $_SESSION["phonenum"]; ?>" placeholder="<?php echo $_SESSION["phonenum"]; ?>">
                         </div>
                         
                       </div>
