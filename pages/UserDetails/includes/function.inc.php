@@ -2,8 +2,10 @@
 
 function addUserDetails($conn, $firstName, $middleName, $lastName, $phoneNum, $company)
 {
+    session_start();
     try {
-        session_start();
+        
+        
         $userID = $_SESSION["id"];
 
         // Update user table

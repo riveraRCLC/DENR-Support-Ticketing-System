@@ -522,7 +522,7 @@ function UserCompany() {
             if ('compname' in response) {
                 // Create an option with the company name and set it as selected
                 var option = $('<option>', { text: response.compname, selected: 'selected' });
-                $('#CompanyChoices').html(option);
+                $('#CompanyChoices').append(option);
             } else if ('error' in response) {
                 // Handle the case where an error occurred
                 alert('Error: ' + response.error);
