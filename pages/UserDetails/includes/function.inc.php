@@ -5,48 +5,57 @@ function addUserDetails($conn, $firstName, $middleName, $lastName, $phoneNum, $c
     session_start();
     try {
         
-        
+        if (!empty($firstName) && !empty($middleName) && !empty($lastName) && !empty($phoneNum) && !empty($company)) {
         $userID = $_SESSION["id"];
 
-        // Update user table
-        $updateUserQuery = "UPDATE `user` SET `ufname` = ?, `umname` = ?, `ulname` = ?, `phonenum` = ? WHERE `userid` = ?";
-        $stmt = $conn->prepare($updateUserQuery);
-        $stmt->bind_param("ssssi", $firstName, $middleName, $lastName, $phoneNum, $userID);
-        $stmt->execute();
-        $stmt->close();
-
-        // Check if the user is associated with a company
-        $userCompanyQuery = "SELECT `udcompid` FROM `userdetails` WHERE `uduserid` = ?";
-        $stmt = $conn->prepare($userCompanyQuery);
-        $stmt->bind_param("i", $userID);
-        $stmt->execute();
-        $result = $stmt->get_result();
-        $row = $result->fetch_assoc();
-        $stmt->close();
-
-        if ($row['udcompid'] === null) {
-            // User is not associated with any company, insert a new record
-            insertUserDetails($conn, $userID, $company);
-        } else {
-            // User is associated with a company, update the record
-            $companyID = getCompanyIdByName($conn, $company);
-
-            if ($companyID !== null) {
-                // Company exists, update userdetails table
-                $updateUserDetailsQuery = "UPDATE `userdetails` SET `udcompid` = ? WHERE `uduserid` = ?";
-                $stmt = $conn->prepare($updateUserDetailsQuery);
-                $stmt->bind_param("ii", $companyID, $userID);
+                // Update user table
+                $updateUserQuery = "UPDATE `user` SET `ufname` = ?, `umname` = ?, `ulname` = ?, `phonenum` = ? WHERE `userid` = ?";
+                $stmt = $conn->prepare($updateUserQuery);
+                $stmt->bind_param("ssssi", $firstName, $middleName, $lastName, $phoneNum, $userID);
                 $stmt->execute();
                 $stmt->close();
-            } else {
-                // Company doesn't exist, handle this case (e.g., insert the company first or show an error)
-                // You may want to implement a function to insert a new company
-                // insertNewCompany($conn, $company);
-            }
-        }
 
-        header("Location: /DENR-Support-Ticketing-System/pages/UserDetails/UserDetails.php?success=update");
-        exit();
+                // Check if the user is associated with a company
+                $userCompanyQuery = "SELECT `udcompid` FROM `userdetails` WHERE `uduserid` = ?";
+                $stmt = $conn->prepare($userCompanyQuery);
+                $stmt->bind_param("i", $userID);
+                $stmt->execute();
+                $result = $stmt->get_result();
+                $row = $result->fetch_assoc();
+                $stmt->close();
+
+                if ($row['udcompid'] === null) {
+                    // User is not associated with any company, insert a new record
+                    insertUserDetails($conn, $userID, $company);
+                } else {
+                    // User is associated with a company, update the record
+                    $companyID = getCompanyIdByName($conn, $company);
+
+                    if ($companyID !== null) {
+                        // Company exists, update userdetails table
+                        $updateUserDetailsQuery = "UPDATE `userdetails` SET `udcompid` = ? WHERE `uduserid` = ?";
+                        $stmt = $conn->prepare($updateUserDetailsQuery);
+                        $stmt->bind_param("ii", $companyID, $userID);
+                        $stmt->execute();
+                        $stmt->close();
+                    } else {
+                        // Company doesn't exist, handle this case (e.g., insert the company first or show an error)
+                        // You may want to implement a function to insert a new company
+                        // insertNewCompany($conn, $company);
+                    }
+                }
+
+                header("Location: /DENR-Support-Ticketing-System/pages/UserDetails/UserDetails.php?success=update");
+                exit();
+    } else {
+        // Display an error message
+        echo "Error: Please fill in all required fields.";
+    
+        // Redirect back to the UserDetails.php page
+        header("Location: /DENR-Support-Ticketing-System/pages/UserDetails/UserDetails.php?fail=fail-update");
+        exit(); // Make sure to exit after redirecting to prevent further script execution
+    }
+        
     } catch (Exception $e) {
         // Handle exceptions here (e.g., log the error, redirect to an error page)
         echo "An error occurred: " . $e->getMessage();
