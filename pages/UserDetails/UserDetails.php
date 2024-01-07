@@ -307,7 +307,7 @@ if($_SESSION["email"]) {
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">
-                    <form action="includes/UserDetails.inc.php" method="POST">
+                    <form action="includes/RegisterCompany.inc.php" method="POST">
 
                         <h5>Company</h5>
                         <div class="row">
