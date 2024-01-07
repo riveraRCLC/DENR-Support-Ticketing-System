@@ -89,6 +89,6 @@ function editCompanyDetails($conn, $userID, $compID)
 }
 
 // Call userCompany function in UserDetails.inc.php
-$userID = $_SESSION["id"];
-$selectedCompany = $_POST["company"];
-userCompany($conn, $userID, $selectedCompany);
+//$userID = $_SESSION["id"];
+//$selectedCompany = $_POST["company"];
+//userCompany($conn, $userID, $selectedCompany);

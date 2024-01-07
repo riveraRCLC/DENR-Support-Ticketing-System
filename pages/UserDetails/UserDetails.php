@@ -292,59 +292,53 @@ if($_SESSION["email"]) {
                       </div>
            </form>
 
-        <!-- YOUR PROFILE CARD -->
-        <div class="card card-default">
-          <div class="card-header">
-            <h3 class="card-title">Register Your Company</h3>
-
-            <div class="card-tools">
-              <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                <i class="fas fa-minus"></i>
-              </button>
-              <button type="button" class="btn btn-tool" data-card-widget="remove">
-                <i class="fas fa-times"></i>
-              </button>
-            </div>
-          </div>
-          <!-- /.card-header -->
-          <div class="card-body">
-          <form action="includes/signup.inc.php" method="POST" onsubmit="return validateForm()">
-         
-
-            <h5>Company</h5>
-            <div class="row">
-              <div class="col-12 col-sm-6">
-              <div class="form-group">
-                  <label>Company Name</label>
-                  <input type="text" class="form-control" id="exampleInputEmail122" placeholder="Enter Company Name">
+                <!-- YOUR PROFILE CARD -->
+            <div class="card card-default">
+                <div class="card-header">
+                    <h3 class="card-title">Register Your Company</h3>
+                    <div class="card-tools">
+                        <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                            <i class="fas fa-minus"></i>
+                        </button>
+                        <button type="button" class="btn btn-tool" data-card-widget="remove">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
                 </div>
-                <!-- /.form-group -->
-              </div>
-              <!-- /.col -->
-              <div class="col-12 col-sm-6">
-                  <div class="form-group">
-                  <label>Company Address</label>
-                  <input type="text" class="form-control" id="exampleInputEmail2" placeholder="Enter Company Address">
-              </div>
-                
-                <!-- /.form-group -->
-              </div>
-              
-              <button class="btn btn-primary" >Save</button>
-                    
-              <!-- /.col -->
-            
-              <!-- /.col -->
+                <!-- /.card-header -->
+                <div class="card-body">
+                    <form action="includes/UserDetails.inc.php" method="POST">
+
+                        <h5>Company</h5>
+                        <div class="row">
+                            <div class="col-12 col-sm-6">
+                                <div class="form-group">
+                                    <label for="companyName">Company Name</label>
+                                    <input type="text" class="form-control" id="companyName" name="companyName" placeholder="Enter Company Name">
+                                </div>
+                                <!-- /.form-group -->
+                            </div>
+                            <!-- /.col -->
+                            <div class="col-12 col-sm-6">
+                                <div class="form-group">
+                                    <label for="companyAddress">Company Address</label>
+                                    <input type="text" class="form-control" id="companyAddress" name="companyAddress" placeholder="Enter Company Address">
+                                </div>
+                                <!-- /.form-group -->
+                            </div>
+                            <div class="col-12">
+                            <button type="submit" name="Register_Company" class="btn btn-primary"  >Register</button>
+                            </div>
+                        </div>
+                        <!-- /.row -->
+                    </form>
+                </div>
+                <!-- /.card-body -->
+                <div class="card-footer">
+                    Visit <a href="https://select2.github.io/">Select2 documentation</a> for more examples and information about the plugin.
+                </div>
             </div>
-            <!-- /.row -->
-            </form>
-          </div>
-          <!-- /.card-body -->
-          <div class="card-footer">
-            Visit <a href="https://select2.github.io/">Select2 documentation</a> for more examples and information about
-            the plugin.
-          </div>
-        </div>
+
       
         
       
