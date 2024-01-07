@@ -243,23 +243,20 @@ if($_SESSION["email"]) {
                   <div class="row">
                       <div class="col-md-6">
                         <div class="form-group">
-                          <label>First Name</label>
-                                                                                  <!-- to add here the Data From database dynamically-->
+                          <label>First Name</label>                                                                                 
                           <input type="text" class="form-control" name="firstName" id="firstName" value="<?php echo $_SESSION["ufname"]; ?>" placeholder="<?php echo $_SESSION["ufname"]; ?>">
                         </div>
                         <!-- /.form-group -->
                         <div class="form-group">
                           <label>Last Name</label>                          
                           <input type="text" class="form-control" name="lastName" id="lastName" value="<?php echo $_SESSION["ulname"]; ?>" placeholder="<?php echo $_SESSION["ulname"]; ?>">
-                        </div>
-                      
+                        </div>                     
                         <!-- /.form-group -->
                         <div class="form-group">
                             <label>Company</label>
                             <select id="CompanyChoices" class="form-control select2" style="width: 100%;"></select>
                         </div>
-                        <!-- /.form-group -->
-                              
+                        <!-- /.form-group -->                       
                       </div>
                       <!-- /.col -->
                       <div class="col-md-6">
@@ -278,9 +275,7 @@ if($_SESSION["email"]) {
                     
                     </div>
                     <!-- /.row -->
-
-          
-                      
+                  
                       <button type="submit" name="save_changes" class="btn btn-primary"  >Save</button>
                             
                       <!-- /.col -->
@@ -295,7 +290,7 @@ if($_SESSION["email"]) {
                         Visit <a href="https://select2.github.io/">Select2 documentation</a> for more examples and information about
                         the plugin.
                       </div>
-                  </form>
+           </form>
 
         <!-- YOUR PROFILE CARD -->
         <div class="card card-default">
