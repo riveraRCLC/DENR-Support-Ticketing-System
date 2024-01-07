@@ -497,13 +497,21 @@ function CompanyChoices(selectedCompany) {
             // No need to parse JSON, as the response is already expected to be JSON
             var response = JSON.parse(data);
             console.log(response);
-            
+            if (selectedCompany !== "Please Complete Your Details") {
             var options = response.map(function (item) {
                 var isSelected = (item.compname === selectedCompany);
                 return $('<option>', { text: item.compname, selected: isSelected });
             });
             
             $('#CompanyChoices').html(options);
+          } else {
+                // User has no company, add option "User Has No Company" selected
+                var noCompanyOption = $('<option>', {
+                    text: 'You Have No Company',
+                    selected: true
+                });
+                $('#CompanyChoices').append([noCompanyOption]);
+            }
         },
         error: function (xhr, status, error) {
             // Handle AJAX request errors
@@ -519,7 +527,14 @@ function UserCompany() {
         success: function (data) {
             var response = JSON.parse(data);
             console.log(response);
-            CompanyChoices(response.compname);
+            if (response.error !== "Please Complete Your Details") {
+                // User has a company, run the execute function
+                CompanyChoices(response.compname);
+            } else {
+                // User has no company, show alert message
+                alert("User has no company");
+                CompanyChoices(response.error);
+            }
         },
         error: function (xhr, status, error) {
             // Handle AJAX request errors
