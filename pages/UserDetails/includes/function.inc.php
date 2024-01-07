@@ -20,16 +20,7 @@ function addUserDetails($conn, $firstName, $middleName, $lastName, $phoneNum)
                 $_SESSION["umname"] = $middleName;
                 $_SESSION["ulname"] = $lastName;
                 $_SESSION["phonenum"] = $phoneNum;
-
-                // Check if the user is associated with a company
-                $userCompanyQuery = "SELECT `udcompid` FROM `userdetails` WHERE `uduserid` = ?";
-                $stmt = $conn->prepare($userCompanyQuery);
-                $stmt->bind_param("i", $userID);
-                $stmt->execute();
-                $result = $stmt->get_result();
-                $row = $result->fetch_assoc();
-                $stmt->close();
-
+                
 
                 header("Location: /DENR-Support-Ticketing-System/pages/UserDetails/UserDetails.php?success=update");
                 exit();
@@ -39,80 +30,65 @@ function addUserDetails($conn, $firstName, $middleName, $lastName, $phoneNum)
         echo "An error occurred: " . $e->getMessage();
     }
 }
-
-function editCompanyDetails($conn, $userID, $company) 
+function userCompany($conn, $userID, $selectedCompany)
 {
-    $companyId = '';
-    $count = '';
-    // Step 1: Retrieve compid based on compname
-    $getCompanyIdQuery = "SELECT `compid` FROM `company` WHERE `compname` = ?";
-    $stmt = $conn->prepare($getCompanyIdQuery);
-    $stmt->bind_param("s", $company);
+    try {
+        // Check if the selected company is "You Have No Company"
+        if ($selectedCompany !== "You Have No Company") {
+            // Find the compid for the selected company
+            $compID = findCompanyID($conn, $selectedCompany);
+
+            // Update the user's company in the userdetails table
+            editCompanyDetails($conn, $userID, $compID);
+            echo "Company details updated successfully.";
+        } else {
+            // User has no company, handle it as needed
+            echo "User has no company";
+        }
+    } catch (Exception $e) {
+        // Handle exceptions here
+        echo "An error occurred: " . $e->getMessage();
+    }
+}
+
+// Function to find the compid for the selected company
+function findCompanyID($conn, $selectedCompany)
+{
+    $query = "SELECT compid FROM company WHERE compname = ?";
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param("s", $selectedCompany);
     $stmt->execute();
-    $stmt->bind_result($companyId);
-    $stmt->fetch();
+    $result = $stmt->get_result();
+    $row = $result->fetch_assoc();
     $stmt->close();
 
-    // Step 2: Check if the user already has a record in userdetails table
-    $checkUserDetailsQuery = "SELECT COUNT(*) FROM `userdetails` WHERE `uduserid` = ?";
-    $stmt = $conn->prepare($checkUserDetailsQuery);
-    $stmt->bind_param("i", $userID);
-    $stmt->execute();
-    $stmt->bind_result($count);
-    $stmt->fetch();
-    $stmt->close();
-
-    if ($count > 0) {
-        // User already has a record, update it
-        $updateUserDetailsQuery = "UPDATE `userdetails` SET `udcompid` = ? WHERE `uduserid` = ?";
-        $stmt = $conn->prepare($updateUserDetailsQuery);
-        $stmt->bind_param("ii", $companyId, $userID);
-        $stmt->execute();
-        $stmt->close();
+    if ($row) {
+        return $row['compid'];
     } else {
-        // User doesn't have a record, insert a new one
-        $insertUserDetailsQuery = "INSERT INTO `userdetails` (`udcompid`, `uduserid`) VALUES (?, ?)";
-        $stmt = $conn->prepare($insertUserDetailsQuery);
-        $stmt->bind_param("ii", $companyId, $userID);
-        $stmt->execute();
-        $stmt->close();
+        // Handle the case where the selected company name doesn't exist
+        echo "Error: Selected company does not exist.";
+        exit(); // or return an appropriate value
     }
 }
 
-// Function to insert a new record in userdetails table
-function insertUserDetails($conn, $userID, $company)
+// Function to update the user's company in the userdetails table
+function editCompanyDetails($conn, $userID, $compID)
 {
     try {
-        $companyID = getCompanyIdByName($conn, $company);
-
-        // Insert new record in userdetails table
-        $insertUserDetailsQuery = "INSERT INTO `userdetails` (`uduserid`, `udcompid`) VALUES (?, ?)";
-        $stmt = $conn->prepare($insertUserDetailsQuery);
-        $stmt->bind_param("ii", $userID, $companyID);
+        // Update userdetails table with the compid
+        $updateCompanyQuery = "UPDATE userdetails SET udcompid = ? WHERE uduserid = ?";
+        $stmt = $conn->prepare($updateCompanyQuery);
+        $stmt->bind_param("ii", $compID, $userID);
         $stmt->execute();
         $stmt->close();
     } catch (Exception $e) {
-        // Handle exceptions here (e.g., log the error, redirect to an error page)
+        // Handle exceptions here
         echo "An error occurred: " . $e->getMessage();
+        exit(); // or return an appropriate value
     }
 }
 
-function getCompanyIdByName($conn, $companyName)
-{
-    try {
-        $getCompanyIdQuery = "SELECT `compid` FROM `company` WHERE `compname` = ?";
-        $stmt = $conn->prepare($getCompanyIdQuery);
-        $stmt->bind_param("s", $companyName);
-        $stmt->execute();
-        $result = $stmt->get_result();
-        $row = $result->fetch_assoc();
-        $companyID = $row['compid'];
-        $stmt->close();
-
-        return $companyID;
-    } catch (Exception $e) {
-        // Handle exceptions here (e.g., log the error, redirect to an error page)
-        echo "An error occurred: " . $e->getMessage();
-        return null;
-    }
-}
+// Call userCompany function in UserDetails.inc.php
+$userID = $_SESSION["id"];
+$selectedCompany = $_POST["company"];
+userCompany($conn, $userID, $selectedCompany);

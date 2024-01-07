@@ -254,7 +254,7 @@ if($_SESSION["email"]) {
                         <!-- /.form-group -->
                         <div class="form-group">
                             <label>Company</label>
-                            <select id="CompanyChoices" class="form-control select2" style="width: 100%;"></select>
+                            <select id="CompanyChoices" name="company" class="form-control select2" style="width: 100%;" ></select>
                         </div>
                         <!-- /.form-group -->                       
                       </div>

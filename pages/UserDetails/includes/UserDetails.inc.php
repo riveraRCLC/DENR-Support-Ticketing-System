@@ -1,7 +1,8 @@
 <?php
 
 if (isset($_POST["save_changes"])) {
-    $userID = $_POST["userid"];
+    session_start();
+    $userID = $_SESSION["id"];
     $firstName = $_POST["firstName"];
     $middleName = $_POST["middleName"];
     $lastName = $_POST["lastName"];
@@ -14,7 +15,8 @@ if (isset($_POST["save_changes"])) {
         require_once 'function.inc.php';
 
         addUserDetails($conn, $firstName, $middleName, $lastName, $phoneNum);
-        editCompanyDetails($conn, $userID, $company);
+        userCompany($conn, $userID, $company);
+       
     } else {
         // Show an error message or take appropriate action
         echo '<script>alert("Error: All required fields must be filled in.");</script>';
