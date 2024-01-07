@@ -5,7 +5,7 @@ function addUserDetails($conn, $firstName, $middleName, $lastName, $phoneNum, $c
     session_start();
     try {
         
-        if (!empty($firstName) && !empty($middleName) && !empty($lastName) && !empty($phoneNum) && !empty($company)) {
+        
         $userID = $_SESSION["id"];
 
                 // Update user table
@@ -14,6 +14,12 @@ function addUserDetails($conn, $firstName, $middleName, $lastName, $phoneNum, $c
                 $stmt->bind_param("ssssi", $firstName, $middleName, $lastName, $phoneNum, $userID);
                 $stmt->execute();
                 $stmt->close();
+
+                // Update session variables with the new user details
+                $_SESSION["ufname"] = $firstName;
+                $_SESSION["umname"] = $middleName;
+                $_SESSION["ulname"] = $lastName;
+                $_SESSION["phonenum"] = $phoneNum;
 
                 // Check if the user is associated with a company
                 $userCompanyQuery = "SELECT `udcompid` FROM `userdetails` WHERE `uduserid` = ?";
@@ -47,14 +53,6 @@ function addUserDetails($conn, $firstName, $middleName, $lastName, $phoneNum, $c
 
                 header("Location: /DENR-Support-Ticketing-System/pages/UserDetails/UserDetails.php?success=update");
                 exit();
-    } else {
-        // Display an error message
-        echo "Error: Please fill in all required fields.";
-    
-        // Redirect back to the UserDetails.php page
-        header("Location: /DENR-Support-Ticketing-System/pages/UserDetails/UserDetails.php?fail=fail-update");
-        exit(); // Make sure to exit after redirecting to prevent further script execution
-    }
         
     } catch (Exception $e) {
         // Handle exceptions here (e.g., log the error, redirect to an error page)
