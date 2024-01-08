@@ -474,7 +474,7 @@ if($_SESSION["id"]) {
                         tr += '</td>';
                         tr += '<td class="mailbox-star"><a href="#"><i class="fas fa-star text-warning"></i></a><a href="#" id="myconSenderID' + [i] + '" style="display: none;">' + conSenderID + '</a><a href="#" id="myConvoid' + [i] + '" style="display: none;">' + convoid + '</a><a href="#" id="myTicketID' + [i] + '" style="display: none;">' + ticketid + '</a></td>';
                         tr += '<td class="mailbox-name" id="mycheck' + [i] + '"><a href="/DENR-Support-Ticketing-System/pages/mailbox/TestReadMail.php" onclick="passValues(' + [i] + ')" >' + senderFirstName + ' ' + senderLastName + '</a></td>';
-                        tr += '<td class="mailbox-subject" id="mySub' + [i] + '"><b>' + subject + '</b></td> - <td class="mailbox-body" id="myBody' + [i] + '">- ' + body + '...</td>';
+                        tr += '<td class="mailbox-subject" id="mySub' + [i] + '"><b>' + subject + '</b> <h9 class="mailbox-body" id="myBody' + [i] + '">- ' + truncateBody(body) + '</h9></td>';
                         tr += '<td class="mailbox-attachment"></td>';
                         tr += '<td class="mailbox-date" id="myDate' + [i] + '">' + date + '</td>';
                     }
@@ -485,7 +485,12 @@ if($_SESSION["id"]) {
             });
         }
                 
-
+        function truncateBody(body) {
+        if (body.length > 30) {
+            return body.substring(0, 30) + '...';
+              }
+              return body;
+          }
 
   $(function () {
     //Enable check and uncheck all functionality
