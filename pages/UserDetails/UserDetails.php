@@ -352,6 +352,7 @@ if($_SESSION["email"]) {
                 <h3 class="card-title">Change Password</h3>
               </div>
               <div class="card-body p-0">
+                <form action="includes/ChangePass.inc.php" method="POST">
                 <div class="bs-stepper">
                   <div class="bs-stepper-header" role="tablist">
                     <!-- your steps here -->
@@ -374,22 +375,22 @@ if($_SESSION["email"]) {
                     <div id="logins-part" class="content" role="tabpanel" aria-labelledby="logins-part-trigger">
                       <div class="form-group">
                         <label ">Email address</label>
-                        <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+                        <input type="email" class="form-control" id="inputEmail" name="inputEmail" placeholder="Enter email">
                       </div>
                       <div class="form-group">
                         <label for="exampleInputPassword3">Current Password</label>
-                        <input type="password" class="form-control" id="exampleInputPassword3" placeholder="Password">
+                        <input type="password" class="form-control" id="inputCurrentPass" name="inputCurrentPass" placeholder="Password">
                       </div>
                       <div class="form-group">
                         <label for="exampleInputPassword4">New Password</label>
-                        <input type="password" class="form-control" id="exampleInputPassword4" placeholder="New Password">
+                        <input type="password" class="form-control" id="inputNewPass" name="inputNewPass" placeholder="New Password">
                       </div>
                       <div class="form-group">
                         <label for="exampleInputPassword5">Confirm Password</label>
-                        <input type="password" class="form-control" id="exampleInputPassword5" placeholder="Confirm Password">
+                        <input type="password" class="form-control" id="confirmNewPass" name="confirmNewPass" placeholder="Confirm Password">
                       </div>
-                      <button type="submit" class="btn btn-primary">Submit</button>
-                      <button class="btn btn-primary" onclick="stepper.next()">Next</button>
+                      <button type="submit" name="Change_Password" class="btn btn-primary">Submit</button>
+                     <!-- <button class="btn btn-primary" onclick="stepper.next()">Next</button> -->
                     </div>
                     <div id="information-part" class="content" role="tabpanel" aria-labelledby="information-part-trigger">
                       <div class="form-group">
@@ -409,6 +410,7 @@ if($_SESSION["email"]) {
                     </div>
                   </div>
                 </div>
+                </form>
               </div>
               <!-- /.card-body -->
               <div class="card-footer">
