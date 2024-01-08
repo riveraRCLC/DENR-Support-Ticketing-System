@@ -7,9 +7,9 @@ if (isset($_POST["Change_Password"])) {
     $confirmNewPass = $_POST["confirmNewPass"];
 
         require_once 'dbh.inc.php';
-        require_once 'functionRegister.inc.php';
+        require_once 'functionChangePass.inc.php';
 
-        changePass($conn, $inputEmail, $inputCurrentPass, inputNewPass, confirmNewPass);
+        changePass($conn, $email, $inputCurrentPass, $inputNewPass, $confirmNewPass);
        
        
 }else {
