@@ -141,61 +141,6 @@ if($_SESSION["email"]) {
     
 
 
-              <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="nav-icon fas fa-edit"></i>
-                  <p>
-                    Forms
-                    <i class="fas fa-angle-left right"></i>
-                  </p>
-                </a>
-                <ul class="nav nav-treeview">
-                  <li class="nav-item">
-                    <a href="/DENR-Support-Ticketing-System/pages/TestingGround/Test1.html" class="nav-link">
-                      <i class="far fa-circle nav-icon"></i>
-                      <p>TestPage1</p>
-                    </a>
-                  </li>
-                </ul>  
-                
-                
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
-                      <i class="far fa-circle nav-icon"></i>
-                      <p>
-                        Login & Register
-                        <i class="fas fa-angle-left right"></i>
-                      </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-                      <li class="nav-item">
-                        <a href="pages/register/login.php" class="nav-link">
-                          <i class="far fa-circle nav-icon"></i>
-                          <p>Login</p>
-                        </a>
-                      </li>
-                      <li class="nav-item">
-                        <a href="pages/register/register.php" class="nav-link">
-                          <i class="far fa-circle nav-icon"></i>
-                          <p>Register</p>
-                        </a>
-                      </li>
-                      <li class="nav-item">
-                        <a href="pages/register/forgotpass.php" class="nav-link">
-                          <i class="far fa-circle nav-icon"></i>
-                          <p>Forgot Password</p>
-                        </a>
-                      </li>
-                      <li class="nav-item">
-                        <a href="pages/register/recovery.php" class="nav-link">
-                          <i class="far fa-circle nav-icon"></i>
-                          <p>Recover Password</p>
-                        </a>
-                      </li>
-                    </ul>
-                  </li>
-
-
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
